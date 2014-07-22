@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InstagrameViewController : UIViewController
+@interface InstagrameViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

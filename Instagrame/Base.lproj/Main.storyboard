@@ -28,8 +28,8 @@
                                     <constraint firstAttribute="width" constant="70" id="lHl-Qp-tkc"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Smith" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="922-82-1pv">
-                                <rect key="frame" x="98" y="51" width="105" height="24"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Владимир Павкин" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="922-82-1pv">
+                                <rect key="frame" x="98" y="39" width="160" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -53,6 +53,44 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RF8-BU-FrP">
+                                <rect key="frame" x="20" y="126" width="280" height="300"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameSummaryCell" rowHeight="76" id="RjN-9h-dtu" customClass="GameSummaryTableViewCell">
+                                        <rect key="frame" x="0.0" y="22" width="280" height="76"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RjN-9h-dtu" id="YiS-1e-7FR">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="75"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="90" translatesAutoresizingMaskIntoConstraints="NO" id="nlf-E2-Bwn">
+                                                    <rect key="frame" x="20" y="27" width="90" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="Mj0-BS-JHZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="nlf-E2-Bwn" secondAttribute="centerY" id="BfE-Hc-8eq"/>
+                                                <constraint firstItem="nlf-E2-Bwn" firstAttribute="leading" secondItem="YiS-1e-7FR" secondAttribute="leading" constant="20" symbolic="YES" id="ssK-Sb-95e"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="nlf-E2-Bwn" id="TTE-DU-AxV"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="PKH-af-7CO" id="Erd-cA-CUl"/>
+                                    <outlet property="delegate" destination="PKH-af-7CO" id="2Ib-Ke-FIe"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -63,6 +101,7 @@
                             <constraint firstAttribute="trailing" secondItem="1rl-KI-ajH" secondAttribute="trailing" constant="20" symbolic="YES" id="KV4-3d-bbX"/>
                             <constraint firstItem="t53-Ua-v33" firstAttribute="leading" secondItem="FPE-64-eEW" secondAttribute="leading" id="M0i-1s-mPA"/>
                             <constraint firstItem="922-82-1pv" firstAttribute="leading" secondItem="LW8-Pl-Mp6" secondAttribute="trailing" constant="8" symbolic="YES" id="cnw-kc-RJa"/>
+                            <constraint firstItem="1rl-KI-ajH" firstAttribute="leading" secondItem="922-82-1pv" secondAttribute="trailing" constant="12" id="eCd-m7-eXz"/>
                             <constraint firstItem="LW8-Pl-Mp6" firstAttribute="top" secondItem="RFF-jj-kqF" secondAttribute="bottom" constant="20" symbolic="YES" id="jLC-nj-3fR"/>
                             <constraint firstItem="LW8-Pl-Mp6" firstAttribute="leading" secondItem="FPE-64-eEW" secondAttribute="leading" constant="20" symbolic="YES" id="oQG-UA-Y0U"/>
                             <constraint firstAttribute="trailing" secondItem="t53-Ua-v33" secondAttribute="trailing" id="rVP-4k-GDD"/>

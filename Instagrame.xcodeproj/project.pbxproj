@@ -21,6 +21,7 @@
 		840B3577197ED5640050763B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B3559197ED5640050763B /* UIKit.framework */; };
 		840B357F197ED5640050763B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 840B357D197ED5640050763B /* InfoPlist.strings */; };
 		840B3581197ED5640050763B /* InstagrameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B3580197ED5640050763B /* InstagrameTests.m */; };
+		840B359D197F01440050763B /* GameSummaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B359C197F01440050763B /* GameSummaryTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		840B357C197ED5640050763B /* InstagrameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "InstagrameTests-Info.plist"; sourceTree = "<group>"; };
 		840B357E197ED5640050763B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		840B3580197ED5640050763B /* InstagrameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstagrameTests.m; sourceTree = "<group>"; };
+		840B359B197F01440050763B /* GameSummaryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameSummaryTableViewCell.h; path = views/GameSummaryTableViewCell.h; sourceTree = "<group>"; };
+		840B359C197F01440050763B /* GameSummaryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameSummaryTableViewCell.m; path = views/GameSummaryTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,7 @@
 		840B355B197ED5640050763B /* Instagrame */ = {
 			isa = PBXGroup;
 			children = (
+				840B359A197F01210050763B /* views */,
 				840B3567197ED5640050763B /* Main.storyboard */,
 				840B356A197ED5640050763B /* InstagrameViewController.h */,
 				840B356B197ED5640050763B /* InstagrameViewController.m */,
@@ -150,6 +154,15 @@
 				840B357D197ED5640050763B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		840B359A197F01210050763B /* views */ = {
+			isa = PBXGroup;
+			children = (
+				840B359B197F01440050763B /* GameSummaryTableViewCell.h */,
+				840B359C197F01440050763B /* GameSummaryTableViewCell.m */,
+			);
+			name = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840B359D197F01440050763B /* GameSummaryTableViewCell.m in Sources */,
 				840B356C197ED5640050763B /* InstagrameViewController.m in Sources */,
 				840B3562197ED5640050763B /* main.m in Sources */,
 				840B3566197ED5640050763B /* InstagrameAppDelegate.m in Sources */,
