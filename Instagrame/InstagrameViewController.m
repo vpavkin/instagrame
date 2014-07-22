@@ -9,6 +9,7 @@
 #import "InstagrameViewController.h"
 
 @interface InstagrameViewController ()
+@property (strong, nonatomic) IBOutlet UIImageView *avatar;
 
 @end
 
@@ -17,13 +18,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.avatar.layer.cornerRadius = self.avatar.frame.size.width / 2;
+    self.avatar.layer.borderWidth = 3.0f;
+    self.avatar.layer.borderColor = [[UIColor whiteColor] CGColor];
 }
 
-- (void)didReceiveMemoryWarning
+-(UIStatusBarStyle)preferredStatusBarStyle
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return UIStatusBarStyleLightContent;
 }
 
 @end

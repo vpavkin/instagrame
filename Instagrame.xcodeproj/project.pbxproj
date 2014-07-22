@@ -112,8 +112,6 @@
 		840B355B197ED5640050763B /* Instagrame */ = {
 			isa = PBXGroup;
 			children = (
-				840B3564197ED5640050763B /* InstagrameAppDelegate.h */,
-				840B3565197ED5640050763B /* InstagrameAppDelegate.m */,
 				840B3567197ED5640050763B /* Main.storyboard */,
 				840B356A197ED5640050763B /* InstagrameViewController.h */,
 				840B356B197ED5640050763B /* InstagrameViewController.m */,
@@ -126,6 +124,8 @@
 		840B355C197ED5640050763B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				840B3564197ED5640050763B /* InstagrameAppDelegate.h */,
+				840B3565197ED5640050763B /* InstagrameAppDelegate.m */,
 				840B355D197ED5640050763B /* Instagrame-Info.plist */,
 				840B355E197ED5640050763B /* InfoPlist.strings */,
 				840B3561197ED5640050763B /* main.m */,
