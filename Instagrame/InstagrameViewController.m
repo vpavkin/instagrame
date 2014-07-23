@@ -8,36 +8,46 @@
 
 #import "InstagrameViewController.h"
 #import "GameSummaryTableViewCell.h"
+#import "ColorMacro.h"
 
 @interface InstagrameViewController ()
-@property (strong, nonatomic) IBOutlet UIImageView *avatar;
+@property (weak, nonatomic) IBOutlet UIButton *createGameButton;
+@property (weak, nonatomic) IBOutlet UIImageView *avatar;
+@property (weak, nonatomic) IBOutlet UITableView *currentGamesTable;
+@property (weak, nonatomic) IBOutlet UILabel *noGamesPlaceholder;
+
 @end
 
 @implementation InstagrameViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.avatar.layer.cornerRadius = self.avatar.frame.size.width / 2;
     self.avatar.layer.borderWidth = 3.0f;
     self.avatar.layer.borderColor = [[UIColor whiteColor] CGColor];
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle
-{
+- (void) viewDidLayoutSubviews{
+    CGRect frame = self.currentGamesTable.frame;
+    frame.size.height = self.currentGamesTable.contentSize.height;
+    self.currentGamesTable.frame = CGRectMake(frame.origin.x,frame.origin.y,frame.size.width,frame.size.width);
+    
+    self.noGamesPlaceholder.hidden = [self.currentGamesTable visibleCells].count;
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
 
-#pragma mark UITableViewDataSource
+#pragma mark UITableView
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section{
+    return 0;
 }
 
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *simpleTableIdentifier = @"GameSummaryCell";
     
     GameSummaryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
@@ -46,8 +56,13 @@
         cell = [[GameSummaryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    cell.name = [NSString stringWithFormat:@"Game descriiiiption %d", indexPath.row];
-    cell.backgroundColor = [UIColor clearColor];
+    NSArray *colors = @[ Rgb2UIColor(255,59,48),
+                         Rgb2UIColor(76,217,100),
+                         Rgb2UIColor(52,170,220)];
+    
+    cell.name = [NSString stringWithFormat:@"Game descriiiiption looong %d", indexPath.row];
+    cell.backgroundColor = colors[indexPath.row % colors.count];
+    
     return cell;
 }
 

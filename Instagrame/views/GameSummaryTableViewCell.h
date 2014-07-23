@@ -11,5 +11,10 @@
 @interface GameSummaryTableViewCell : UITableViewCell
 
 @property (strong,nonatomic) NSString* name;
+@property (nonatomic) NSUInteger state;
+@property (nonatomic) NSTimeInterval countdown;
+@property (nonatomic) NSUInteger numberOfPlayers;
+
+- (void) addPhoto: (UIImage *)photo;
 
 @end

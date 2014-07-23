@@ -10,6 +10,10 @@
 
 @interface GameSummaryTableViewCell ()
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIView *imagesContainer;
+@property (weak, nonatomic) IBOutlet UIImageView *stateImageView;
+@property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
+@property (weak, nonatomic) IBOutlet UILabel *playersCountLabel;
 
 @end
 
@@ -18,6 +22,14 @@
 - (void) setName:(NSString *)name{
     _name = name;
     self.nameLabel.text = name;
+}
+
+- (void) setState:(NSUInteger)state{
+    
+}
+
+- (void) addPhoto:(UIImage *)photo{
+    [self.imagesContainer addSubview:[[UIImageView alloc] initWithImage:photo ]];
 }
 
 @end
