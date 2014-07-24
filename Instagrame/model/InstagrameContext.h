@@ -10,4 +10,9 @@
 
 @interface InstagrameContext : NSObject
 
+@property (strong, nonatomic) NSString* userName;
+@property (strong, nonatomic) UIImage* userAvatar;
+
++ (instancetype) instance;
+
 @end
