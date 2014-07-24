@@ -8,6 +8,7 @@
 
 #import "InstagrameViewController.h"
 #import "GameSummaryTableViewCell.h"
+#import "InstagrameContext.h"
 #import "ColorMacro.h"
 
 @interface InstagrameViewController ()
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UITableView *currentGamesTable;
 @property (weak, nonatomic) IBOutlet UILabel *noGamesPlaceholder;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 
 @end
 
@@ -22,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.userNameLabel.text = [InstagrameContext instance].userName;
+    self.avatar.image = [InstagrameContext instance].userAvatar;
     self.avatar.layer.cornerRadius = self.avatar.frame.size.width / 2;
     self.avatar.layer.borderWidth = 3.0f;
     self.avatar.layer.borderColor = [[UIColor whiteColor] CGColor];
@@ -43,7 +47,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    return 0;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -59,8 +63,8 @@
     NSArray *colors = @[ Rgb2UIColor(255,59,48),
                          Rgb2UIColor(76,217,100),
                          Rgb2UIColor(52,170,220)];
-    
-    cell.name = [NSString stringWithFormat:@"Game descriiiiption looong %d", indexPath.row];
+    NSArray *names = @[@"Сфоткай Чернова",@"Сфоткай кота в мешке",@"Сфоткай фотоаппарат"];
+    cell.name = names[indexPath.row];
     cell.backgroundColor = colors[indexPath.row % colors.count];
     
     return cell;
