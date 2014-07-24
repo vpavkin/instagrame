@@ -10,6 +10,12 @@
 
 @interface User : NSObject
 
+- (instancetype) initWithName:(NSString*) name avatar:(UIImage*) avatar;
 
+@property (strong,nonatomic) NSString *uid;
+@property (strong,nonatomic) NSString *name;
+@property (strong,nonatomic) UIImage *avatar;
+@property (nonatomic) NSInteger karma;
+@property (nonatomic) NSInteger coins;
 
 @end

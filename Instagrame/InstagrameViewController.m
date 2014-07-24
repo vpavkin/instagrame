@@ -24,8 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.userNameLabel.text = [InstagrameContext instance].userName;
-    self.avatar.image = [InstagrameContext instance].userAvatar;
+    self.userNameLabel.text = [InstagrameContext instance].me.name;
+    self.avatar.image = [InstagrameContext instance].me.avatar;
     self.avatar.layer.cornerRadius = self.avatar.frame.size.width / 2;
     self.avatar.layer.borderWidth = 3.0f;
     self.avatar.layer.borderColor = [[UIColor whiteColor] CGColor];
@@ -47,7 +47,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -63,7 +63,7 @@
     NSArray *colors = @[ Rgb2UIColor(255,59,48),
                          Rgb2UIColor(76,217,100),
                          Rgb2UIColor(52,170,220)];
-    NSArray *names = @[@"Сфоткай Чернова",@"Сфоткай кота в мешке",@"Сфоткай фотоаппарат"];
+    NSArray *names = @[@"Сфоткай Чернова", @"Сфоткай кота в мешке", @"Сфоткай фотоаппарат"];
     cell.name = names[indexPath.row];
     cell.backgroundColor = colors[indexPath.row % colors.count];
     

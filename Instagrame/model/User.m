@@ -10,4 +10,13 @@
 
 @implementation User
 
+- (instancetype) initWithName:(NSString*) name avatar:(UIImage*) avatar{
+    self = [super init];
+    if (self) {
+        self.name = name;
+        self.avatar = avatar;
+    }
+    return self;
+}
+
 @end

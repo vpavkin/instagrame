@@ -81,7 +81,7 @@ accessTokenRenewalFailed:(VKAccessToken *)accessToken
         NSLog(@"Request %@ is ok:\n %@", request.signature, response);
     if ([request.signature isEqualToString:@"info:"]) {
         NSDictionary *info = response[@"response"][0];
-        [InstagrameContext instance].userName = info[@"first_name"];
+        NSString* name = info[@"first_name"];
         
         NSString *imgPath = info[@"photo_100"];
         
@@ -101,12 +101,14 @@ accessTokenRenewalFailed:(VKAccessToken *)accessToken
                
                dispatch_async(dispatch_get_main_queue(), ^
                               {
-                                  [InstagrameContext instance].userAvatar = [UIImage imageWithData:imgTmpData];
+                                  [InstagrameContext instance].me = [[User alloc] initWithName:name
+                                                                                        avatar:[UIImage imageWithData:imgTmpData]];
                                   [self performSegueWithIdentifier:@"authorize" sender:self];
                               });
             });
         } else {
-            [InstagrameContext instance].userAvatar = [UIImage imageWithData:imgData];
+            [InstagrameContext instance].me = [[User alloc] initWithName:name
+                                                                  avatar:[UIImage imageWithData:imgData]];
             [self performSegueWithIdentifier:@"authorize" sender:self];
         }
        

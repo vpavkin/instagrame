@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 @interface InstagrameContext : NSObject
 
-@property (strong, nonatomic) NSString* userName;
-@property (strong, nonatomic) UIImage* userAvatar;
+@property (strong, nonatomic) User* me;
 
 + (instancetype) instance;
 
