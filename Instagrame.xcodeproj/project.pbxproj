@@ -29,6 +29,7 @@
 		84BE0D8C197FEB7C00E72F88 /* InstagrameContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE0D8B197FEB7C00E72F88 /* InstagrameContext.m */; };
 		84BE0D8F1980DA7900E72F88 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE0D8E1980DA7900E72F88 /* Room.m */; };
 		84BE0D921980DD1F00E72F88 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE0D911980DD1F00E72F88 /* Picture.m */; };
+		84BE0D97198237E700E72F88 /* LocalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE0D96198237E700E72F88 /* LocalDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,9 @@
 		84BE0D8E1980DA7900E72F88 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Room.m; path = model/Room.m; sourceTree = "<group>"; };
 		84BE0D901980DD1F00E72F88 /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Picture.h; path = model/Picture.h; sourceTree = "<group>"; };
 		84BE0D911980DD1F00E72F88 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Picture.m; path = model/Picture.m; sourceTree = "<group>"; };
+		84BE0D941982317100E72F88 /* InstagrameDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InstagrameDataSource.h; path = data/InstagrameDataSource.h; sourceTree = "<group>"; };
+		84BE0D95198237E700E72F88 /* LocalDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalDataSource.h; path = data/LocalDataSource.h; sourceTree = "<group>"; };
+		84BE0D96198237E700E72F88 /* LocalDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalDataSource.m; path = data/LocalDataSource.m; sourceTree = "<group>"; };
 		E2064E166E894BC781C75F58 /* libPods-Instagrame.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Instagrame.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -141,6 +145,7 @@
 		840B355B197ED5640050763B /* Instagrame */ = {
 			isa = PBXGroup;
 			children = (
+				84BE0D931982313600E72F88 /* data */,
 				845DECF0197FC66F00F9138F /* model */,
 				840B359A197F01210050763B /* views */,
 				840B3567197ED5640050763B /* Main.storyboard */,
@@ -207,6 +212,16 @@
 				845DECEE197FC66700F9138F /* User.m */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		84BE0D931982313600E72F88 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				84BE0D941982317100E72F88 /* InstagrameDataSource.h */,
+				84BE0D95198237E700E72F88 /* LocalDataSource.h */,
+				84BE0D96198237E700E72F88 /* LocalDataSource.m */,
+			);
+			name = data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,6 +364,7 @@
 				84BE0D921980DD1F00E72F88 /* Picture.m in Sources */,
 				840B356C197ED5640050763B /* InstagrameViewController.m in Sources */,
 				84BE0D8C197FEB7C00E72F88 /* InstagrameContext.m in Sources */,
+				84BE0D97198237E700E72F88 /* LocalDataSource.m in Sources */,
 				840B3562197ED5640050763B /* main.m in Sources */,
 				84BE0D8F1980DA7900E72F88 /* Room.m in Sources */,
 				840B3566197ED5640050763B /* InstagrameAppDelegate.m in Sources */,

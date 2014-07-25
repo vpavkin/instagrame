@@ -7,8 +7,16 @@
 //
 
 #import "InstagrameContext.h"
+#import "LocalDataSource.h"
 
 @implementation InstagrameContext
+
+- (id <InstagrameDataSource>) data{
+    if (!_data) {
+        _data = [[LocalDataSource alloc] init];
+    }
+    return _data;
+}
 
 static InstagrameContext *_instance = nil;
 

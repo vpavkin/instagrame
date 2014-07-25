@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "VkontakteSDK.h"
+#import "InstagrameDataSource.h"
 
-@interface AuthorizeViewController : UIViewController <VKConnectorDelegate,VKRequestDelegate>
+@interface AuthorizeViewController : UIViewController <AuthorizationRequestDelegate>
 @end

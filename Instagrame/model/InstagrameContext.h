@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "InstagrameDataSource.h"
 #import "User.h"
 
 @interface InstagrameContext : NSObject
 
 @property (strong, nonatomic) User* me;
-
+@property (strong, nonatomic) id <InstagrameDataSource> data;
 + (instancetype) instance;
 
 @end

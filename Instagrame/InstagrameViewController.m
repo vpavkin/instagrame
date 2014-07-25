@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *currentGamesTable;
 @property (weak, nonatomic) IBOutlet UILabel *noGamesPlaceholder;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *carmaLabel;
 
 @end
 
@@ -25,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.userNameLabel.text = [InstagrameContext instance].me.name;
+    self.carmaLabel.text = [NSString stringWithFormat: @"%d", [InstagrameContext instance].me.karma];
     self.avatar.image = [InstagrameContext instance].me.avatar;
     self.avatar.layer.cornerRadius = self.avatar.frame.size.width / 2;
     self.avatar.layer.borderWidth = 3.0f;

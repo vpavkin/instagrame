@@ -240,6 +240,7 @@
                     <navigationItem key="navigationItem" id="Ulg-xu-xYg"/>
                     <connections>
                         <outlet property="avatar" destination="LW8-Pl-Mp6" id="siw-IP-qFG"/>
+                        <outlet property="carmaLabel" destination="9WE-YX-B6D" id="sHd-m0-KcI"/>
                         <outlet property="createGameButton" destination="396-yD-Laz" id="cQ9-sh-ldG"/>
                         <outlet property="currentGamesTable" destination="RF8-BU-FrP" id="p6A-cf-Zwv"/>
                         <outlet property="noGamesPlaceholder" destination="2Uf-C7-cuU" id="vaM-Vm-SIg"/>
