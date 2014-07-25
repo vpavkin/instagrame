@@ -11,6 +11,16 @@
 
 @interface Room : NSObject
 
++ (instancetype) room:(NSString*) uid
+                 task:(NSString*) task
+                owner:(User*) owner
+            startDate:(NSDate*) startDate
+        voteStartDate:(NSDate*) voteStartDate
+           finishDate:(NSDate*) finishDate
+              players:(NSArray*) players
+             pictures:(NSArray*) pictures
+         playersLimit:(NSInteger*) playersLimit;
+
 @property (strong,nonatomic) NSString *uid;
 @property (strong,nonatomic) NSString *task;
 @property (strong,nonatomic) User *owner;

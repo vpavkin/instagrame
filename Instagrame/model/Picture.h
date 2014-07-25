@@ -13,12 +13,22 @@
 
 @interface Picture : NSObject
 
++ (instancetype) picture:(NSString*) uid
+                  author:(User*) author
+                    room:(Room*) room
+                   image:(UIImage*) image
+                  voters:(NSArray*) voters
+            isSubscribed:(BOOL) isSubscribed
+               isVisited:(BOOL) isVisited
+              submitDate:(NSDate*) submitDate;
+
+@property (strong,nonatomic) NSString *uid;
 @property (strong,nonatomic) User *author;
 @property (strong,nonatomic) Room *room;
 @property (strong,nonatomic) UIImage *image;
 @property (strong,nonatomic) NSArray *voters; //of User
-@property (strong,nonatomic) NSArray *subscribers; //of User
-@property (strong,nonatomic) NSArray *visitors; //of User
+@property (nonatomic, getter = isSubscribed) BOOL subscribed;
+@property (nonatomic, getter = isVisited) BOOL visited;
 @property (strong,nonatomic) NSDate *submitDate;
 
 @end
