@@ -2,33 +2,41 @@
 //  Picture.h
 //  Instagrame
 //
-//  Created by vpavkin on 24.07.14.
+//  Created by vpavkin on 28.07.14.
 //  Copyright (c) 2014 instagrame. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@class User;
-@class Room;
+@class Room, User;
 
-@interface Picture : NSObject
+@interface Picture : NSManagedObject
 
-+ (instancetype) picture:(NSString*) uid
-                  author:(User*) author
-                    room:(Room*) room
-                   image:(UIImage*) image
-                  voters:(NSArray*) voters
-            isSubscribed:(BOOL) isSubscribed
-               isVisited:(BOOL) isVisited
-              submitDate:(NSDate*) submitDate;
+@property (nonatomic, retain) NSString * image;
+@property (nonatomic, retain) NSDate * submitDate;
+@property (nonatomic, retain) Room *room;
+@property (nonatomic, retain) User *author;
+@property (nonatomic, retain) NSSet *voters;
+@property (nonatomic, retain) NSSet *subscribers;
+@property (nonatomic, retain) NSSet *visitors;
+@end
 
-@property (strong,nonatomic) NSString *uid;
-@property (strong,nonatomic) User *author;
-@property (strong,nonatomic) Room *room;
-@property (strong,nonatomic) UIImage *image;
-@property (strong,nonatomic) NSArray *voters; //of User
-@property (nonatomic, getter = isSubscribed) BOOL subscribed;
-@property (nonatomic, getter = isVisited) BOOL visited;
-@property (strong,nonatomic) NSDate *submitDate;
+@interface Picture (CoreDataGeneratedAccessors)
+
+- (void)addVotersObject:(User *)value;
+- (void)removeVotersObject:(User *)value;
+- (void)addVoters:(NSSet *)values;
+- (void)removeVoters:(NSSet *)values;
+
+- (void)addSubscribersObject:(User *)value;
+- (void)removeSubscribersObject:(User *)value;
+- (void)addSubscribers:(NSSet *)values;
+- (void)removeSubscribers:(NSSet *)values;
+
+- (void)addVisitorsObject:(User *)value;
+- (void)removeVisitorsObject:(User *)value;
+- (void)addVisitors:(NSSet *)values;
+- (void)removeVisitors:(NSSet *)values;
 
 @end

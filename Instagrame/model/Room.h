@@ -2,33 +2,37 @@
 //  Room.h
 //  Instagrame
 //
-//  Created by vpavkin on 24.07.14.
+//  Created by vpavkin on 28.07.14.
 //  Copyright (c) 2014 instagrame. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
+#import <CoreData/CoreData.h>
 
-@interface Room : NSObject
+@class Picture, User;
 
-+ (instancetype) room:(NSString*) uid
-                 task:(NSString*) task
-                owner:(User*) owner
-            startDate:(NSDate*) startDate
-        voteStartDate:(NSDate*) voteStartDate
-           finishDate:(NSDate*) finishDate
-              players:(NSArray*) players
-             pictures:(NSArray*) pictures
-         playersLimit:(NSInteger*) playersLimit;
+@interface Room : NSManagedObject
 
-@property (strong,nonatomic) NSString *uid;
-@property (strong,nonatomic) NSString *task;
-@property (strong,nonatomic) User *owner;
-@property (strong,nonatomic) NSDate *startDate;
-@property (strong,nonatomic) NSDate *voteStartDate;
-@property (strong,nonatomic) NSDate *finishDate;
-@property (strong,nonatomic) NSArray *players; //of User
-@property (strong,nonatomic) NSArray *pictures; //of Picture
-@property (nonatomic)        NSInteger *playersLimit;
+@property (nonatomic, retain) NSNumber * limit;
+@property (nonatomic, retain) NSDate * startDate;
+@property (nonatomic, retain) NSString * task;
+@property (nonatomic, retain) NSDate * voteDate;
+@property (nonatomic, retain) NSDate * finishDate;
+@property (nonatomic, retain) NSSet *players;
+@property (nonatomic, retain) User *owner;
+@property (nonatomic, retain) NSSet *pictures;
+@end
+
+@interface Room (CoreDataGeneratedAccessors)
+
+- (void)addPlayersObject:(User *)value;
+- (void)removePlayersObject:(User *)value;
+- (void)addPlayers:(NSSet *)values;
+- (void)removePlayers:(NSSet *)values;
+
+- (void)addPicturesObject:(Picture *)value;
+- (void)removePicturesObject:(Picture *)value;
+- (void)addPictures:(NSSet *)values;
+- (void)removePictures:(NSSet *)values;
 
 @end
