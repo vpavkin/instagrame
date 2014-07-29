@@ -7,13 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "InstagrameDataSource.h"
-#import "User.h"
+
+@class Authorizer, Requester;
+
+#define instagrameContext [InstagrameContext instance]
+
+#define DOCUMENT_IS_READY_NOTIFICATION @"document_is_ready"
+
+#define DOCUMENT_KEY @"document"
 
 @interface InstagrameContext : NSObject
 
-@property (strong, nonatomic) User* me;
-@property (strong, nonatomic) id <InstagrameDataSource> data;
 + (instancetype) instance;
+
+@property (strong, nonatomic) UIManagedDocument* document;
+@property (strong, nonatomic) Authorizer* authorizer;
+@property (strong, nonatomic) Requester* requester;
+
+
+
 
 @end

@@ -8,15 +8,15 @@
 
 #import "User.h"
 
-@implementation User
+@implementation User (Addon)
 
 + (instancetype) user:(NSString*) name avatar:(UIImage*) avatar uid:(NSString*)uid karma:(NSInteger)karma coins:(NSInteger) coins{
     User *user = [[User alloc]init];
     user.name = name;
-    user.avatar = avatar;
-    user.uid = uid;
-    user.karma = karma;
-    user.coins = coins;
+//    user.avatar = avatar;
+//    user.uid = uid;
+//    user.karma = karma;
+//    user.coins = coins;
     return user;
 }
 

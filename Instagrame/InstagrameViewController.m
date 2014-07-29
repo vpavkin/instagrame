@@ -9,6 +9,7 @@
 #import "InstagrameViewController.h"
 #import "GameSummaryTableViewCell.h"
 #import "InstagrameContext.h"
+#import "KeychainItemWrapper.h"
 #import "ColorMacro.h"
 
 @interface InstagrameViewController ()
@@ -25,9 +26,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.userNameLabel.text = [InstagrameContext instance].me.name;
-    self.carmaLabel.text = [NSString stringWithFormat: @"%d", [InstagrameContext instance].me.karma];
-    self.avatar.image = [InstagrameContext instance].me.avatar;
+    
+//    self.userNameLabel.text = [InstagrameContext instance].me.name;
+//    self.carmaLabel.text = [NSString stringWithFormat: @"%@", [InstagrameContext instance].me.karma];
+//    self.avatar.image = [InstagrameContext instance].me.avatar;
     self.avatar.layer.cornerRadius = self.avatar.frame.size.width / 2;
     self.avatar.layer.borderWidth = 3.0f;
     self.avatar.layer.borderColor = [[UIColor whiteColor] CGColor];

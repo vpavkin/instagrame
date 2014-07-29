@@ -8,13 +8,47 @@
 
 #import "AuthorizeViewController.h"
 #import "InstagrameContext.h"
-
-@interface AuthorizeViewController ()
-
-@end
-
+#import "Authorizer.h"
 
 @implementation AuthorizeViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    if (instagrameContext.document) {
+        [self authorize];
+    }else{
+        [[NSNotificationCenter defaultCenter] addObserverForName:DOCUMENT_IS_READY_NOTIFICATION
+                                                          object:nil
+                                                           queue:nil
+                                                      usingBlock:^(NSNotification *note) {
+                                                          [self authorize];
+                                                      }];
+    }
+}
+
+- (void) authorize{
+    if ([instagrameContext.authorizer isAuthorizedWithService:AuthorizationServiceInstagrame]) {
+        [instagrameContext.authorizer authorizeWithService:AuthorizationServiceInstagrame delegate:self];
+    }else if ([instagrameContext.authorizer isAuthorizedWithService:AuthorizationServiceVK]){
+        [instagrameContext.authorizer authorizeWithService:AuthorizationServiceVK delegate:self];
+    }
+}
+
+- (IBAction)touchVkButton {
+    [[InstagrameContext instance].authorizer authorizeWithService:AuthorizationServiceVK delegate:self];
+}
+
+- (void) authorizationSuccess:(User *)me{
+    [self performSegueWithIdentifier:@"authorize" sender:self];
+}
+
+- (void) authorizationError:(id)error{
+    //todo: add handler
+}
+
+#pragma mark properties
 
 @synthesize webView = _webView;
 
@@ -26,26 +60,6 @@
         _webView.hidden = YES;
     }
     return _webView;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    if ([[InstagrameContext instance].data isAuthorizedWithService:AuthorizationServiceVK]) {
-        [self touchVkButton];
-    }
-}
-
-- (IBAction)touchVkButton {
-    [[InstagrameContext instance].data authorizeWithService:AuthorizationServiceVK delegate:self];
-}
-
-- (void) authorizationSuccess:(User *)me{
-    [self performSegueWithIdentifier:@"authorize" sender:self];
-}
-
-- (void) authorizationError:(id)error{
-    //todo: add handler
 }
 
 @end

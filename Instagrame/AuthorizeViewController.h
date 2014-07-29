@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "InstagrameDataSource.h"
+#import "Authorizer.h"
 
 @interface AuthorizeViewController : UIViewController <AuthorizationRequestDelegate>
 @end

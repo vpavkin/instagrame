@@ -4,7 +4,6 @@
 target "Instagrame" do
 
 pod 'Vkontakte-iOS-SDK-LV'
-pod 'RestKit'
 end
 
 target "InstagrameTests" do

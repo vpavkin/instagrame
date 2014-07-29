@@ -1,17 +1,21 @@
 //
-//  InstagrameDataSource.h
+//  Authorizer.h
 //  Instagrame
 //
-//  Created by vpavkin on 25.07.14.
+//  Created by vpavkin on 29.07.14.
 //  Copyright (c) 2014 instagrame. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
+@class User;
+
+#define EMAIL_KEY @"email"
+#define PASSWORD_KEY @"password"
 
 typedef enum AuthorizationServiceType : NSInteger AuthorizationServiceType;
 enum AuthorizationServiceType : NSInteger {
-    AuthorizationServiceVK //more to come
+    AuthorizationServiceInstagrame, //more to come
+    AuthorizationServiceVK
 };
 
 @protocol AuthorizationRequestDelegate <NSObject>
@@ -19,12 +23,16 @@ enum AuthorizationServiceType : NSInteger {
 @property (strong,nonatomic,readonly) UIWebView *webView;
 - (void) authorizationSuccess: (User*)me;
 - (void) authorizationError: (id) error;
-
 @end
 
-@protocol InstagrameDataSource <NSObject>
+@interface Authorizer : NSObject
 
 - (BOOL) isAuthorizedWithService: (AuthorizationServiceType)service;
 - (void) authorizeWithService:(AuthorizationServiceType)service delegate:(id<AuthorizationRequestDelegate>) delegate;
+
+@property (strong, nonatomic, readonly) NSString* myEmail;
+@property (strong, nonatomic, readonly) NSString* myPassword;
+
+@property (strong, nonatomic) User* me;
 
 @end

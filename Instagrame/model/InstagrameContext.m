@@ -7,16 +7,10 @@
 //
 
 #import "InstagrameContext.h"
-#import "LocalDataSource.h"
+#import "Authorizer.h"
+#import "Requester.h"
 
 @implementation InstagrameContext
-
-- (id <InstagrameDataSource>) data{
-    if (!_data) {
-        _data = [[LocalDataSource alloc] init];
-    }
-    return _data;
-}
 
 static InstagrameContext *_instance = nil;
 
@@ -28,6 +22,25 @@ static InstagrameContext *_instance = nil;
         sharedInstance = [[self alloc] init];
     });
     return sharedInstance;
+}
+
+- (void) setDocument:(UIManagedDocument *)document{
+    _document = document;
+    [[NSNotificationCenter defaultCenter] postNotificationName:DOCUMENT_IS_READY_NOTIFICATION object:self userInfo:@{DOCUMENT_KEY:_document}];
+}
+
+- (Authorizer*) authorizer{
+    if (!_authorizer) {
+        _authorizer = [[Authorizer alloc] init];
+    }
+    return _authorizer;
+}
+
+- (Requester*) requester{
+    if (!_requester) {
+        _requester = [[Requester alloc] init];
+    }
+    return _requester;
 }
 
 @end
