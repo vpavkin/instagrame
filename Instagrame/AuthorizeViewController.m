@@ -10,6 +10,11 @@
 #import "InstagrameContext.h"
 #import "Authorizer.h"
 
+@interface AuthorizeViewController ()
+@property (strong, nonatomic) IBOutlet UIView *preloader;
+
+@end
+
 @implementation AuthorizeViewController
 
 - (void)viewDidLoad

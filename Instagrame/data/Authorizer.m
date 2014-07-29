@@ -99,9 +99,11 @@
             break;
         }
         case AuthorizationServiceInstagrame:{
-            [instagrameContext.requester userForEmail:@""
-                                          andPassword:@""
-                                           completion:nil];
+            [instagrameContext.requester userForEmail:@"vpavkin@gmail.com"
+                                          andPassword:@"12345"
+                                           completion:^(BOOL ok, NSDictionary* result){
+                                               NSLog(@"%@", result);
+                                           }];
             break;
         }
     }
