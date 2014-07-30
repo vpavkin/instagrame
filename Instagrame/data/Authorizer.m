@@ -10,9 +10,15 @@
 #import "KeychainItemWrapper.h"
 #import "VkontakteSDK.h"
 #import "InstagrameContext.h"
+#import "User.h"
+#import "User+Addon.h"
 #import "Requester.h"
+#import "Synchronizer.h"
 
 @interface Authorizer () <VKRequestDelegate,VKConnectorDelegate>
+
+@property (strong, nonatomic, readwrite) NSString* myEmail;
+@property (strong, nonatomic, readwrite) NSString* myPassword;
 
 @property (weak,nonatomic) id<AuthorizationRequestDelegate> authDelegate;
 @property (strong,nonatomic,readonly) VKRequestManager* requestsMananger;
@@ -51,9 +57,11 @@
 
 - (void) loadKeychainData{
     KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:PASSWORD_KEY accessGroup:@"YOUR_APP_ID_HERE.com.instagrame"];
+    [wrapper setObject:@"MY_APP_CREDENTIALS" forKey:(__bridge id)kSecAttrService];
 	self.passwordItem = wrapper;
     
 	wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:EMAIL_KEY accessGroup:@"YOUR_APP_ID_HERE.com.instagrame"];
+    [wrapper setObject:@"MY_APP_CREDENTIALS" forKey:(__bridge id)kSecAttrService];
     self.emailItem = wrapper;
 }
 
@@ -63,6 +71,14 @@
 
 - (NSString*) myPassword{
     return  [self.passwordItem objectForKey:PASSWORD_KEY];
+}
+
+- (void) setMyEmail:(NSString*) email{
+    [self.emailItem setObject:email forKey:EMAIL_KEY];
+}
+
+- (void) setMyPassword: (NSString*) password{
+    [self.passwordItem setObject:password forKey:PASSWORD_KEY];
 }
 
 #pragma mark InstagrameDataSource
@@ -82,12 +98,12 @@
 - (void) authorizeWithService:(AuthorizationServiceType)service
                      delegate:(id<AuthorizationRequestDelegate>)delegate
                          data:(NSDictionary*) data {
-
+    
     self.authDelegate = delegate;
     
     switch (service) {
         case AuthorizationServiceVK:{
-
+            
             VKUser* user = [VKUser currentUser];
             if (user && user.accessToken.isValid) {
                 [self loadUserData];
@@ -105,7 +121,15 @@
             [instagrameContext.requester userForEmail:data[EMAIL_KEY]
                                           andPassword:data[PASSWORD_KEY]
                                            completion:^(BOOL ok, NSDictionary* result){
-                                               NSLog(@"%@", result);
+#warning add error forwarding
+                                               if (ok && result) {
+                                                   self.myEmail = data[EMAIL_KEY];
+                                                   self.myPassword = data[PASSWORD_KEY];
+                                                   [self.authDelegate authorizationSuccess:[instagrameContext.synchronizer syncUser:[User convertFromParseUser:result]]];
+                                               }else{
+                                                   [self.authDelegate authorizationError:nil];
+                                               }
+                                               
                                            }];
             break;
         }
@@ -162,16 +186,16 @@ accessTokenRenewalFailed:(VKAccessToken *)accessToken {
             [item.cache addCache:imgTmpData
                           forURL:[NSURL URLWithString:imgPath]
                         liveTime:VKCacheLiveTimeOneMonth];
-//            [self createUser:name img:imgTmpData];
-//            dispatch_async(dispatch_get_main_queue(), ^
-//                           {
-//                               [self.authDelegate authorizationSuccess:[InstagrameContext instance].me];
-//                           });
+            //            [self createUser:name img:imgTmpData];
+            //            dispatch_async(dispatch_get_main_queue(), ^
+            //                           {
+            //                               [self.authDelegate authorizationSuccess:[InstagrameContext instance].me];
+            //                           });
         });
     } else {
         
-//        [self createUser:name img:imgData];
-//        [self.authDelegate authorizationSuccess:[InstagrameContext instance].me];
+        //        [self createUser:name img:imgData];
+        //        [self.authDelegate authorizationSuccess:[InstagrameContext instance].me];
     }
     
 }

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Picture" representedClassName="Picture" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="submitDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="picturesMade" inverseEntity="User" syncable="YES"/>
         <relationship name="room" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Room" inverseName="pictures" inverseEntity="Room" syncable="YES"/>
         <relationship name="subscribers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="picturesSubscribed" inverseEntity="User" syncable="YES"/>
@@ -10,20 +13,27 @@
         <relationship name="voters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="picturesVoted" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Room" representedClassName="Room" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="finishDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="limit" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="task" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="voteDate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="roomsOwned" inverseEntity="User" syncable="YES"/>
         <relationship name="pictures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" inverseName="room" inverseEntity="Picture" syncable="YES"/>
         <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="roomsPlayed" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
-        <attribute name="avatar" attributeType="String" syncable="YES"/>
+        <attribute name="avatarURL" attributeType="String" syncable="YES"/>
         <attribute name="coins" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="karma" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="picturesMade" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" inverseName="author" inverseEntity="Picture" syncable="YES"/>
         <relationship name="picturesSubscribed" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" inverseName="subscribers" inverseEntity="Picture" syncable="YES"/>
         <relationship name="picturesVisited" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" inverseName="visitors" inverseEntity="Picture" syncable="YES"/>
@@ -32,8 +42,8 @@
         <relationship name="roomsPlayed" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Room" inverseName="players" inverseEntity="Room" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Room" positionX="-5690" positionY="-49" width="128" height="163"/>
-        <element name="User" positionX="-5177" positionY="-18" width="128" height="193"/>
-        <element name="Picture" positionX="-5510" positionY="-189" width="128" height="148"/>
+        <element name="Picture" positionX="-5510" positionY="-189" width="128" height="195"/>
+        <element name="Room" positionX="-5690" positionY="-49" width="128" height="210"/>
+        <element name="User" positionX="-5177" positionY="-18" width="128" height="255"/>
     </elements>
 </model>

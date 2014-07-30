@@ -2,7 +2,7 @@
 //  Picture.m
 //  Instagrame
 //
-//  Created by vpavkin on 28.07.14.
+//  Created by vpavkin on 30.07.14.
 //  Copyright (c) 2014 instagrame. All rights reserved.
 //
 
@@ -13,12 +13,15 @@
 
 @implementation Picture
 
+@dynamic createdAt;
 @dynamic image;
+@dynamic objectId;
 @dynamic submitDate;
-@dynamic room;
+@dynamic updatedAt;
 @dynamic author;
-@dynamic voters;
+@dynamic room;
 @dynamic subscribers;
 @dynamic visitors;
+@dynamic voters;
 
 @end

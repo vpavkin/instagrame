@@ -1,23 +1,46 @@
 //
-//  User.m
+//  User+Addon.m
 //  Instagrame
 //
-//  Created by vpavkin on 23.07.14.
+//  Created by vpavkin on 30.07.14.
 //  Copyright (c) 2014 instagrame. All rights reserved.
 //
 
-#import "User.h"
+#import "User+Addon.h"
+#import "InstagrameContext.h"
 
 @implementation User (Addon)
 
-+ (instancetype) user:(NSString*) name avatar:(UIImage*) avatar uid:(NSString*)uid karma:(NSInteger)karma coins:(NSInteger) coins{
-    User *user = [[User alloc]init];
-    user.name = name;
-//    user.avatar = avatar;
-//    user.uid = uid;
-//    user.karma = karma;
-//    user.coins = coins;
++ (NSDictionary*) convertFromParseUser:(NSDictionary*) parseUser{
+    NSMutableDictionary* user = [parseUser mutableCopy];
+    
+    NSDateFormatter* dateF = [[NSDateFormatter alloc] init];
+    [dateF setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [dateF setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+    
+    NSDate* date = [dateF dateFromString:user[UPDATED_AT]];
+    if (!date) {
+        NSLog(@"Error parsing %@", UPDATED_AT);
+    }
+    [user setObject:date forKey:UPDATED_AT];
+    
+    date = [dateF dateFromString:user[CREATED_AT]];
+    if (!date) {
+        NSLog(@"Error parsing %@", CREATED_AT);
+    }
+    [user setObject:date forKey:CREATED_AT];
+    
     return user;
+}
+
+- (User*) updateWithActualData:(NSDictionary*) user{
+    for (NSString *key in user) {
+        if (![key isEqualToString:@"password"]) {
+            [self setValue:user[key] forKey:key];
+            
+        }
+    }
+    return self;
 }
 
 @end

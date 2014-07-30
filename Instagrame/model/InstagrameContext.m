@@ -9,6 +9,7 @@
 #import "InstagrameContext.h"
 #import "Authorizer.h"
 #import "Requester.h"
+#import "Synchronizer.h"
 
 @implementation InstagrameContext
 
@@ -41,6 +42,13 @@ static InstagrameContext *_instance = nil;
         _requester = [[Requester alloc] init];
     }
     return _requester;
+}
+
+- (Synchronizer*) synchronizer{
+    if (!_synchronizer) {
+        _synchronizer = [[Synchronizer alloc] init];
+    }
+    return _synchronizer;
 }
 
 @end
