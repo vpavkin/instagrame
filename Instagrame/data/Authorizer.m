@@ -35,6 +35,7 @@
 }
 
 - (void) loadUserData {
+    NSLog(@"Authorizing with VK, userId=%d...", [VKUser currentUser].accessToken.userID);
     [self.requestsMananger info];
 }
 
@@ -68,17 +69,19 @@
 
 - (BOOL) isAuthorizedWithService: (AuthorizationServiceType)service{
     switch (service) {
-        case AuthorizationServiceVK:
-            return [VKUser currentUser] != nil;
+        case AuthorizationServiceVK:{
+            VKUser *user = [VKUser currentUser];
+            return user && user.accessToken.isValid;
+        }
         case AuthorizationServiceInstagrame:
-            //return self.myEmail.length && self.myPassword.length;
-            #warning stub, uncomment back
-            return YES;
+            return self.myEmail.length && self.myPassword.length;
     }
-    return false;
+    return NO;
 }
 
-- (void) authorizeWithService:(AuthorizationServiceType)service delegate:(id<AuthorizationRequestDelegate>)delegate {
+- (void) authorizeWithService:(AuthorizationServiceType)service
+                     delegate:(id<AuthorizationRequestDelegate>)delegate
+                         data:(NSDictionary*) data {
 
     self.authDelegate = delegate;
     
@@ -86,21 +89,21 @@
         case AuthorizationServiceVK:{
 
             VKUser* user = [VKUser currentUser];
-            if (user) {
+            if (user && user.accessToken.isValid) {
                 [self loadUserData];
                 return;
             }
             
-            self.authDelegate.webView.hidden = NO;
             [[VKConnector sharedInstance] startWithAppID: @"4473650"
-                                              permissons: @[@"wall", @"friends"]
+                                              permissons: @[@"wall", @"friends", @"offline"]
                                                  webView: self.authDelegate.webView
                                                 delegate: self];
             break;
         }
         case AuthorizationServiceInstagrame:{
-            [instagrameContext.requester userForEmail:@"vpavkin@gmail.com"
-                                          andPassword:@"12345"
+            NSLog(@"Authorizing '%@' with password '%@'", data[EMAIL_KEY], data[PASSWORD_KEY]);
+            [instagrameContext.requester userForEmail:data[EMAIL_KEY]
+                                          andPassword:data[PASSWORD_KEY]
                                            completion:^(BOOL ok, NSDictionary* result){
                                                NSLog(@"%@", result);
                                            }];
@@ -112,17 +115,22 @@
 #pragma mark - VKConnectorDelegate
 
 - (void) VKConnector:(VKConnector *)connector
-accessTokenRenewalSucceeded:(VKAccessToken *)accessToken
-{
-    NSLog(@"OK: %@", accessToken);
-    self.authDelegate.webView.hidden = YES;
+accessTokenRenewalSucceeded:(VKAccessToken *)accessToken {
+    NSLog(@"VK token renewed: %@", accessToken);
     [self loadUserData];
 }
 
 - (void) VKConnector:(VKConnector *)connector
-accessTokenRenewalFailed:(VKAccessToken *)accessToken
-{
+accessTokenRenewalFailed:(VKAccessToken *)accessToken {
     NSLog(@"User denied to authorize app.");
+}
+
+- (void)VKConnector:(VKConnector *)connector willShowWebView:(UIWebView *)webView{
+    self.authDelegate.webView.hidden = NO;
+}
+
+- (void)VKConnector:(VKConnector *)connector willHideWebView:(UIWebView *)webView{
+    self.authDelegate.webView.hidden = YES;
 }
 
 #pragma mark - VKRequestDelegate
@@ -173,7 +181,7 @@ accessTokenRenewalFailed:(VKAccessToken *)accessToken
 }
 
 - (void)VKRequest:(VKRequest *)request responseError:(NSError *)error{
-    NSLog(@"error");
+    NSLog(@"error: %@", error);
 }
 
 

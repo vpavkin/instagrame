@@ -52,23 +52,31 @@
           andPassword:(NSString *)password
            completion:(void (^)(BOOL success, NSDictionary *data))completion{
     
-    NSURL *url = [NSURL URLWithString:[self url:[self urlForClass:@"User"]
-                                     withParams:@{@"where": [self jsonFromDictionary:@{@"email":email, @"password":password}]}]];
+    [self queryClass:@"User" withPredicate:@{@"email":email, @"password":password} completion:^(BOOL success, NSArray *data) {
+        if (completion) {
+            completion(success, success ? [data firstObject] : nil);
+        }
+    }];
+}
+
+- (void) queryClass: (NSString*) class
+      withPredicate: (NSDictionary*)predicate
+         completion:(void (^)(BOOL success, NSArray *data))completion{
+    
+    NSURL *url = [NSURL URLWithString:[self url:[self urlForClass:class]
+                                     withParams:@{@"where":[self jsonFromDictionary:predicate]}]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:APP_ID forHTTPHeaderField:@"X-Parse-Application-Id"];
     [request setValue:APP_KEY forHTTPHeaderField:@"X-Parse-REST-API-Key"];
-
-    
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response,
                                                NSData *data, NSError *connectionError){
-                               NSLog(@"response:\n%@",response);
                                if (data.length > 0 && connectionError == nil){
-                                   NSDictionary *jsonResult =
-                                   [[NSJSONSerialization JSONObjectWithData:data
-                                                                   options: NSJSONReadingMutableContainers
-                                                                     error: NULL][@"results"] firstObject];
+                                   NSArray *jsonResult =
+                                   [NSJSONSerialization JSONObjectWithData:data
+                                                                   options: 0
+                                                                     error: NULL][@"results"];
                                    if (completion) {
                                        completion (YES, jsonResult);
                                    }
@@ -76,6 +84,8 @@
                                    NSLog(@"error:\n%@", connectionError);
                                }
                            }];
+    
+    
 }
 
 @end

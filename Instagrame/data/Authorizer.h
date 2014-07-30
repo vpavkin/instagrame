@@ -28,7 +28,9 @@ enum AuthorizationServiceType : NSInteger {
 @interface Authorizer : NSObject
 
 - (BOOL) isAuthorizedWithService: (AuthorizationServiceType)service;
-- (void) authorizeWithService:(AuthorizationServiceType)service delegate:(id<AuthorizationRequestDelegate>) delegate;
+- (void) authorizeWithService:(AuthorizationServiceType)service
+                     delegate:(id<AuthorizationRequestDelegate>) delegate
+                         data:(NSDictionary*) data;
 
 @property (strong, nonatomic, readonly) NSString* myEmail;
 @property (strong, nonatomic, readonly) NSString* myPassword;

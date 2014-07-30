@@ -11,16 +11,100 @@
 #import "Authorizer.h"
 
 @interface AuthorizeViewController ()
-@property (strong, nonatomic) IBOutlet UIView *preloader;
+
+@property (weak, nonatomic) UITextField *activeText;
+@property (nonatomic) CGSize keyboardSize;
+
+@property (weak, nonatomic) IBOutlet UIView *preloader;
+@property (weak, nonatomic) IBOutlet UITextField *emailText;
+@property (weak, nonatomic) IBOutlet UITextField *passwordText;
 
 @end
 
 @implementation AuthorizeViewController
 
+- (IBAction)textDidBeginEditing:(UITextField *)sender {
+    self.activeText = sender;
+    NSInteger delta = (self.view.frame.size.height - self.keyboardSize.height) - (self.activeText.frame.origin.y + self.activeText.frame.size.height + 10);
+    [self scrollKeyboardWithDelta:delta];
+
+}
+- (IBAction)textDidEndEditing:(UITextField *)sender {
+    self.activeText = nil;
+}
+
+- (IBAction)textDidEndOnExit:(UITextField *)sender {
+    [sender resignFirstResponder];
+    if (sender == self.passwordText && self.passwordText.text && self.emailText.text) {
+        [instagrameContext.authorizer authorizeWithService:AuthorizationServiceInstagrame
+                                                  delegate:self
+                                                      data:@{EMAIL_KEY:self.emailText.text, PASSWORD_KEY: self.passwordText.text}];
+    }
+}
+
+- (IBAction)tap:(UITapGestureRecognizer *)sender {
+    [self.view endEditing:YES];
+}
+
+- (void)keyboardWillShow:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    self.keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+}
+
+- (void)keyboardWillHide:(NSNotification*)aNotification
+{
+    [self scrollKeyboardWithDelta:0];
+}
+
+- (void) scrollKeyboardWithDelta:(NSInteger) delta{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    
+    CGRect rect = self.view.frame;
+    if (delta < 0) {
+        rect.origin.y += delta;
+        rect.size.height += -delta;
+    }
+    else{
+        rect.size.height += rect.origin.y;
+        rect.origin.y = 0;
+    }
+    self.view.frame = rect;
+    
+    [UIView commitAnimations];
+
+}
+
+- (void) setupKeyboardScroller{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void) removeKeyboardScroller{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    [self setupKeyboardScroller];
+}
+
+- (void) viewWillDisappear:(BOOL)animated{
+    [self removeKeyboardScroller];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     if (instagrameContext.document) {
         [self authorize];
     }else{
@@ -35,14 +119,18 @@
 
 - (void) authorize{
     if ([instagrameContext.authorizer isAuthorizedWithService:AuthorizationServiceInstagrame]) {
-        [instagrameContext.authorizer authorizeWithService:AuthorizationServiceInstagrame delegate:self];
+        NSLog(@"Already authiorized with VK");
+        [instagrameContext.authorizer authorizeWithService:AuthorizationServiceInstagrame delegate:self data:nil];
     }else if ([instagrameContext.authorizer isAuthorizedWithService:AuthorizationServiceVK]){
-        [instagrameContext.authorizer authorizeWithService:AuthorizationServiceVK delegate:self];
+        NSLog(@"Already authiorized with Email and Password");
+        [instagrameContext.authorizer authorizeWithService:AuthorizationServiceVK delegate:self data:nil];
+    }else{
+        self.preloader.hidden = YES;
     }
 }
 
 - (IBAction)touchVkButton {
-    [[InstagrameContext instance].authorizer authorizeWithService:AuthorizationServiceVK delegate:self];
+    [[InstagrameContext instance].authorizer authorizeWithService:AuthorizationServiceVK delegate:self data:nil];
 }
 
 - (void) authorizationSuccess:(User *)me{
