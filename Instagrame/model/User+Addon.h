@@ -11,6 +11,7 @@
 @interface User (Addon)
 
 + (NSDictionary*) convertFromParseUser:(NSDictionary*) parseUser;
++ (NSDictionary*) convertFromVkUser:(NSDictionary*) vkUser;
 - (User*) updateWithActualData:(NSDictionary*) user;
 
 @end

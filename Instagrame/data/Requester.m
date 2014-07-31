@@ -7,6 +7,7 @@
 //
 
 #import "Requester.h"
+#import "InstagrameContext.h"
 
 #define APP_URL @"https://api.parse.com/1/"
 #define APP_ID @"QEFpYvxRkPGnVWKgLvttKZTBIlaUUgF7xR7mPDEt"
@@ -15,15 +16,23 @@
 @implementation Requester
 
 -(NSString*) jsonFromDictionary:(NSDictionary*) dictionary{
+    NSData *data = [Requester dataFromDictionary:dictionary];
+    if (!data) {
+        return @"";
+    }
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+}
+
++ (NSData*) dataFromDictionary:(NSDictionary*) dictionary{
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary
-                                                       options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
+                                                       options:NSJSONWritingPrettyPrinted
                                                          error:&error];
     if (!jsonData) {
         NSLog(@"Error parsing json: %@", error);
-        return @"";
+        return nil;
     }
-    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    return jsonData;
 }
 
 -(NSString*) urlEncode:(NSString*) string {
@@ -52,10 +61,30 @@
           andPassword:(NSString *)password
            completion:(void (^)(BOOL success, NSDictionary *data))completion{
     
-    [self queryClass:@"User" withPredicate:@{@"email":email, @"password":password} completion:^(BOOL success, NSArray *data) {
+    [self queryClass:USER_CLASS withPredicate:@{@"email":email, @"password":password} completion:^(BOOL success, NSArray *data) {
         if (completion) {
             completion(success, success ? [data firstObject] : nil);
         }
+    }];
+}
+
+- (void) userForVKId:(NSString*) vkId
+          completion: (void(^)(BOOL success, NSDictionary *data))completion{
+    [self queryClass:USER_CLASS withPredicate:@{@"vkId":vkId} completion:^(BOOL success, NSArray *data) {
+        if (completion) {
+            completion(success, success ? [data firstObject] : nil);
+        }
+    }];
+}
+
+- (void) addUserFromVk:(NSDictionary*) preparedInfo
+            completion:(void(^)(BOOL success, NSDictionary *data))completion{
+    [self createEntity:USER_CLASS withFields:preparedInfo completion:^(BOOL success, NSString *objectId) {
+        [self queryClass:USER_CLASS withPredicate:@{@"objectId":objectId} completion:^(BOOL success, NSArray *data) {
+            if (completion) {
+                completion(success, success ? [data firstObject] : nil);
+            }
+        }];
     }];
 }
 
@@ -65,6 +94,7 @@
     
     NSURL *url = [NSURL URLWithString:[self url:[self urlForClass:class]
                                      withParams:@{@"where":[self jsonFromDictionary:predicate]}]];
+    NSLog(@"Querying url: %@", [url.description stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:APP_ID forHTTPHeaderField:@"X-Parse-Application-Id"];
     [request setValue:APP_KEY forHTTPHeaderField:@"X-Parse-REST-API-Key"];
@@ -87,5 +117,41 @@
     
     
 }
+
+- (void) createEntity: (NSString*) class
+           withFields: (NSDictionary*)fields
+           completion:(void (^)(BOOL success, NSString *objectId))completion{
+    
+    NSURL *url = [NSURL URLWithString:[self urlForClass:class]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:APP_ID forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [request setValue:APP_KEY forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod: @"POST"];
+    if (fields) {
+        [request setHTTPBody: [Requester dataFromDictionary:fields]];
+    }
+    NSLog(@"Posting url: %@\nwith data:\n%@",url,fields);
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data, NSError *connectionError){
+                               if (data.length > 0 && connectionError == nil){
+                                   NSLog(@"response:\n%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] );
+                                   NSString *objId =
+                                   [NSJSONSerialization JSONObjectWithData:data
+                                                                   options: 0
+                                                                     error: NULL][@"objectId"];
+                                   if (completion) {
+                                       completion (YES, objId);
+                                   }
+                               }else{
+                                   NSLog(@"error:\n%@", connectionError);
+                               }
+                           }];
+    
+    
+}
+
 
 @end

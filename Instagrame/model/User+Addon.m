@@ -33,6 +33,16 @@
     return user;
 }
 
++ (NSDictionary*) convertFromVkUser:(NSDictionary*) vkUser{
+    return @{
+             @"name":[@[vkUser[@"first_name"],vkUser[@"last_name"]] componentsJoinedByString:@" "],
+             @"avatarURL":vkUser[@"photo_100"],
+             @"vkId":vkUser[@"uid"],
+             @"karma":@0,
+             @"coins":@5
+             };
+}
+
 - (User*) updateWithActualData:(NSDictionary*) user{
     for (NSString *key in user) {
         if (![key isEqualToString:@"password"]) {

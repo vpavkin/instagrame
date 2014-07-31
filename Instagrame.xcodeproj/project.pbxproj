@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7ABEC41CA48D4114B63B61B1 /* libPods-Instagrame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2064E166E894BC781C75F58 /* libPods-Instagrame.a */; };
 		84068F88198633D8009FD331 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 84068F87198633D8009FD331 /* Picture.m */; };
-		84068F8B198633D9009FD331 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 84068F8A198633D9009FD331 /* User.m */; };
 		84068F8E198633D9009FD331 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 84068F8D198633D9009FD331 /* Room.m */; };
 		840B3556197ED5640050763B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B3555197ED5640050763B /* Foundation.framework */; };
 		840B3558197ED5640050763B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B3557197ED5640050763B /* CoreGraphics.framework */; };
@@ -29,9 +28,11 @@
 		845DECEF197FC66700F9138F /* User+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 845DECEE197FC66700F9138F /* User+Addon.m */; };
 		845DECF6197FCC1200F9138F /* AuthorizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845DECF5197FCC1200F9138F /* AuthorizeViewController.m */; };
 		845DECF8197FD33A00F9138F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 845DECF7197FD33A00F9138F /* Podfile */; };
-		849D8A261987B52C0081944F /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D8A251987B52C0081944F /* KeychainItemWrapper.m */; };
 		849D8A2C1987C3290081944F /* Authorizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D8A2B1987C3290081944F /* Authorizer.m */; };
 		849D8A2F1987C9BE0081944F /* Requester.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D8A2E1987C9BE0081944F /* Requester.m */; };
+		849D8A32198A30210081944F /* FDKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D8A31198A30210081944F /* FDKeychain.m */; };
+		849D8A35198A31760081944F /* Synchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D8A34198A31760081944F /* Synchronizer.m */; };
+		849D8A3E198A63A10081944F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D8A3D198A63A10081944F /* User.m */; };
 		84BE0D8C197FEB7C00E72F88 /* InstagrameContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE0D8B197FEB7C00E72F88 /* InstagrameContext.m */; };
 		84BE0D8F1980DA7900E72F88 /* Room+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE0D8E1980DA7900E72F88 /* Room+Addon.m */; };
 		84BE0D921980DD1F00E72F88 /* Picture+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE0D911980DD1F00E72F88 /* Picture+Addon.m */; };
@@ -52,8 +53,6 @@
 		752F93ED52EF42FD848653A7 /* Pods-Instagrame.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagrame.xcconfig"; path = "Pods/Pods-Instagrame.xcconfig"; sourceTree = "<group>"; };
 		84068F86198633D8009FD331 /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Picture.h; path = model/Picture.h; sourceTree = "<group>"; };
 		84068F87198633D8009FD331 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Picture.m; path = model/Picture.m; sourceTree = "<group>"; };
-		84068F89198633D9009FD331 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = model/User.h; sourceTree = "<group>"; };
-		84068F8A198633D9009FD331 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = model/User.m; sourceTree = "<group>"; };
 		84068F8C198633D9009FD331 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Room.h; path = model/Room.h; sourceTree = "<group>"; };
 		84068F8D198633D9009FD331 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Room.m; path = model/Room.m; sourceTree = "<group>"; };
 		840B3552197ED5640050763B /* Instagrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,12 +82,16 @@
 		845DECF4197FCC1200F9138F /* AuthorizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizeViewController.h; sourceTree = "<group>"; };
 		845DECF5197FCC1200F9138F /* AuthorizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizeViewController.m; sourceTree = "<group>"; };
 		845DECF7197FD33A00F9138F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		849D8A241987B52C0081944F /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainItemWrapper.h; path = util/KeychainItemWrapper.h; sourceTree = "<group>"; };
-		849D8A251987B52C0081944F /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainItemWrapper.m; path = util/KeychainItemWrapper.m; sourceTree = "<group>"; };
 		849D8A2A1987C3290081944F /* Authorizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Authorizer.h; path = data/Authorizer.h; sourceTree = "<group>"; };
 		849D8A2B1987C3290081944F /* Authorizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Authorizer.m; path = data/Authorizer.m; sourceTree = "<group>"; };
 		849D8A2D1987C9BE0081944F /* Requester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Requester.h; path = data/Requester.h; sourceTree = "<group>"; };
 		849D8A2E1987C9BE0081944F /* Requester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Requester.m; path = data/Requester.m; sourceTree = "<group>"; };
+		849D8A30198A30210081944F /* FDKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDKeychain.h; sourceTree = "<group>"; };
+		849D8A31198A30210081944F /* FDKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDKeychain.m; sourceTree = "<group>"; };
+		849D8A33198A31760081944F /* Synchronizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Synchronizer.h; path = data/Synchronizer.h; sourceTree = "<group>"; };
+		849D8A34198A31760081944F /* Synchronizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Synchronizer.m; path = data/Synchronizer.m; sourceTree = "<group>"; };
+		849D8A3C198A63A10081944F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = model/User.h; sourceTree = "<group>"; };
+		849D8A3D198A63A10081944F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = model/User.m; sourceTree = "<group>"; };
 		84BE0D8A197FEB7C00E72F88 /* InstagrameContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagrameContext.h; path = model/InstagrameContext.h; sourceTree = "<group>"; };
 		84BE0D8B197FEB7C00E72F88 /* InstagrameContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagrameContext.m; path = model/InstagrameContext.m; sourceTree = "<group>"; };
 		84BE0D8D1980DA7900E72F88 /* Room+Addon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Room+Addon.h"; path = "model/Room+Addon.h"; sourceTree = "<group>"; };
@@ -219,10 +222,10 @@
 		845DECF0197FC66F00F9138F /* model */ = {
 			isa = PBXGroup;
 			children = (
+				849D8A3C198A63A10081944F /* User.h */,
+				849D8A3D198A63A10081944F /* User.m */,
 				84068F8C198633D9009FD331 /* Room.h */,
 				84068F8D198633D9009FD331 /* Room.m */,
-				84068F89198633D9009FD331 /* User.h */,
-				84068F8A198633D9009FD331 /* User.m */,
 				84068F86198633D8009FD331 /* Picture.h */,
 				84068F87198633D8009FD331 /* Picture.m */,
 				84BE0D8D1980DA7900E72F88 /* Room+Addon.h */,
@@ -239,8 +242,8 @@
 		849D8A231987B5080081944F /* util */ = {
 			isa = PBXGroup;
 			children = (
-				849D8A241987B52C0081944F /* KeychainItemWrapper.h */,
-				849D8A251987B52C0081944F /* KeychainItemWrapper.m */,
+				849D8A30198A30210081944F /* FDKeychain.h */,
+				849D8A31198A30210081944F /* FDKeychain.m */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -248,6 +251,8 @@
 		84BE0D931982313600E72F88 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				849D8A33198A31760081944F /* Synchronizer.h */,
+				849D8A34198A31760081944F /* Synchronizer.m */,
 				84BE0D8A197FEB7C00E72F88 /* InstagrameContext.h */,
 				84BE0D8B197FEB7C00E72F88 /* InstagrameContext.m */,
 				849D8A2A1987C3290081944F /* Authorizer.h */,
@@ -396,15 +401,16 @@
 				845DECEF197FC66700F9138F /* User+Addon.m in Sources */,
 				840B359D197F01440050763B /* GameSummaryTableViewCell.m in Sources */,
 				84BE0D921980DD1F00E72F88 /* Picture+Addon.m in Sources */,
+				849D8A3E198A63A10081944F /* User.m in Sources */,
 				849D8A2C1987C3290081944F /* Authorizer.m in Sources */,
 				840B356C197ED5640050763B /* InstagrameViewController.m in Sources */,
 				849D8A2F1987C9BE0081944F /* Requester.m in Sources */,
 				84BE0D8C197FEB7C00E72F88 /* InstagrameContext.m in Sources */,
-				849D8A261987B52C0081944F /* KeychainItemWrapper.m in Sources */,
 				840B3562197ED5640050763B /* main.m in Sources */,
-				84068F8B198633D9009FD331 /* User.m in Sources */,
+				849D8A32198A30210081944F /* FDKeychain.m in Sources */,
 				84068F88198633D8009FD331 /* Picture.m in Sources */,
 				84BE0D8F1980DA7900E72F88 /* Room+Addon.m in Sources */,
+				849D8A35198A31760081944F /* Synchronizer.m in Sources */,
 				84EE456D19862E4100DDD6AB /* Model.xcdatamodeld in Sources */,
 				84068F8E198633D9009FD331 /* Room.m in Sources */,
 				840B3566197ED5640050763B /* InstagrameAppDelegate.m in Sources */,

@@ -23,11 +23,19 @@
 
 @implementation AuthorizeViewController
 
+- (IBAction)touchLoginButton:(UIButton *)sender {
+    if ([self validate]) {
+        [self authorizeInstagrame];
+    }
+}
+
 - (IBAction)textDidBeginEditing:(UITextField *)sender {
     self.activeText = sender;
+    self.activeText.layer.borderColor = [[UIColor clearColor] CGColor];
+    
     NSInteger delta = (self.view.frame.size.height - self.keyboardSize.height) - (self.activeText.frame.origin.y + self.activeText.frame.size.height + 10);
     [self scrollKeyboardWithDelta:delta];
-
+    
 }
 - (IBAction)textDidEndEditing:(UITextField *)sender {
     self.activeText = nil;
@@ -35,11 +43,26 @@
 
 - (IBAction)textDidEndOnExit:(UITextField *)sender {
     [sender resignFirstResponder];
-    if (sender == self.passwordText && self.passwordText.text && self.emailText.text) {
-        [instagrameContext.authorizer authorizeWithService:AuthorizationServiceInstagrame
-                                                  delegate:self
-                                                      data:@{EMAIL_KEY:self.emailText.text, PASSWORD_KEY: self.passwordText.text}];
+    if (sender == self.emailText) {
+        [self.passwordText becomeFirstResponder];
+    }else if (sender == self.passwordText && [self validate]) {
+        [self authorizeInstagrame];
     }
+}
+
+- (BOOL) validateField:(UITextField*) textField{
+    if (!textField.text.length) {
+        textField.layer.cornerRadius = 8.0f;
+        textField.layer.masksToBounds = YES;
+        textField.layer.borderColor = [[UIColor redColor] CGColor];
+        textField.layer.borderWidth = 1.0f;
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL) validate{
+    return [self validateField:self.emailText] && [self validateField:self.passwordText];
 }
 
 - (IBAction)tap:(UITapGestureRecognizer *)sender {
@@ -73,7 +96,7 @@
     self.view.frame = rect;
     
     [UIView commitAnimations];
-
+    
 }
 
 - (void) setupKeyboardScroller{
@@ -106,39 +129,77 @@
 {
     [super viewDidLoad];
     if (instagrameContext.document) {
-        [self authorize];
+        [self preAuthorize];
     }else{
         [[NSNotificationCenter defaultCenter] addObserverForName:DOCUMENT_IS_READY_NOTIFICATION
                                                           object:nil
                                                            queue:nil
                                                       usingBlock:^(NSNotification *note) {
-                                                          [self authorize];
+                                                          [self preAuthorize];
                                                       }];
     }
 }
 
-- (void) authorize{
+- (void) preAuthorize{
     if ([instagrameContext.authorizer isAuthorizedWithService:AuthorizationServiceInstagrame]) {
-        NSLog(@"Already authiorized with VK");
-        [instagrameContext.authorizer authorizeWithService:AuthorizationServiceInstagrame delegate:self data:nil];
-    }else if ([instagrameContext.authorizer isAuthorizedWithService:AuthorizationServiceVK]){
         NSLog(@"Already authiorized with Email and Password");
+        [instagrameContext.authorizer authorizeWithService:AuthorizationServiceInstagrame
+                                                  delegate:self
+                                                      data:@{PASSWORD_KEY: instagrameContext.authorizer.myPassword, EMAIL_KEY: instagrameContext.authorizer.myEmail}];
+    }else if ([instagrameContext.authorizer isAuthorizedWithService:AuthorizationServiceVK]){
+        NSLog(@"Already authiorized with VK");
         [instagrameContext.authorizer authorizeWithService:AuthorizationServiceVK delegate:self data:nil];
     }else{
-        self.preloader.hidden = YES;
+        [self hidePreloader];
     }
+}
+
+- (void) authorizeInstagrame{
+    [self showPreloader];
+    [instagrameContext.authorizer authorizeWithService:AuthorizationServiceInstagrame
+                                              delegate:self
+                                                  data:@{EMAIL_KEY:self.emailText.text, PASSWORD_KEY: self.passwordText.text}];
 }
 
 - (IBAction)touchVkButton {
     [[InstagrameContext instance].authorizer authorizeWithService:AuthorizationServiceVK delegate:self data:nil];
 }
 
-- (void) authorizationSuccess:(User *)me{
+- (void) authorizationSuccess:(User *)me {
+    [self hidePreloader];
+    instagrameContext.me = me;
     [self performSegueWithIdentifier:@"authorize" sender:self];
 }
 
 - (void) authorizationError:(id)error{
-    //todo: add handler
+    [self hidePreloader];
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Wrong credentials"
+                          message:@"Unknown email or password."
+                          delegate:self
+                          cancelButtonTitle: @"OK"
+                          otherButtonTitles: nil];
+    [alert show];
+}
+
+- (void) hidePreloader{
+    [UIView transitionWithView:self.preloader
+                      duration:0.4
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:NULL
+                    completion:NULL];
+    
+    self.preloader.hidden = YES;
+}
+
+- (void) showPreloader{
+    [UIView transitionWithView:self.preloader
+                      duration:0.4
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:NULL
+                    completion:NULL];
+    
+    self.preloader.hidden = NO;
 }
 
 #pragma mark properties

@@ -9,8 +9,8 @@
 #import "InstagrameViewController.h"
 #import "GameSummaryTableViewCell.h"
 #import "InstagrameContext.h"
-#import "KeychainItemWrapper.h"
 #import "ColorMacro.h"
+#import "User.h"
 
 @interface InstagrameViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *createGameButton;
@@ -27,9 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.userNameLabel.text = [InstagrameContext instance].me.name;
-//    self.carmaLabel.text = [NSString stringWithFormat: @"%@", [InstagrameContext instance].me.karma];
-//    self.avatar.image = [InstagrameContext instance].me.avatar;
+    self.userNameLabel.text = instagrameContext.me.name;
+    self.carmaLabel.text = [NSString stringWithFormat: @"%@", instagrameContext.me.karma];
+    self.avatar.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:instagrameContext.me.avatarURL]]];
     self.avatar.layer.cornerRadius = self.avatar.frame.size.width / 2;
     self.avatar.layer.borderWidth = 3.0f;
     self.avatar.layer.borderColor = [[UIColor whiteColor] CGColor];

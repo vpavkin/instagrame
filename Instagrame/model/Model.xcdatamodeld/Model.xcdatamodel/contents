@@ -34,6 +34,7 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="vkId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="picturesMade" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" inverseName="author" inverseEntity="Picture" syncable="YES"/>
         <relationship name="picturesSubscribed" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" inverseName="subscribers" inverseEntity="Picture" syncable="YES"/>
         <relationship name="picturesVisited" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" inverseName="visitors" inverseEntity="Picture" syncable="YES"/>
@@ -44,6 +45,6 @@
     <elements>
         <element name="Picture" positionX="-5510" positionY="-189" width="128" height="195"/>
         <element name="Room" positionX="-5690" positionY="-49" width="128" height="210"/>
-        <element name="User" positionX="-5177" positionY="-18" width="128" height="255"/>
+        <element name="User" positionX="-5177" positionY="-18" width="128" height="268"/>
     </elements>
 </model>

@@ -7,7 +7,7 @@
 //
 
 #import "Authorizer.h"
-#import "KeychainItemWrapper.h"
+#import "FDKeychain.h"
 #import "VkontakteSDK.h"
 #import "InstagrameContext.h"
 #import "User.h"
@@ -22,9 +22,6 @@
 
 @property (weak,nonatomic) id<AuthorizationRequestDelegate> authDelegate;
 @property (strong,nonatomic,readonly) VKRequestManager* requestsMananger;
-
-@property (nonatomic, strong) KeychainItemWrapper *passwordItem;
-@property (nonatomic, strong) KeychainItemWrapper *emailItem;
 
 @end
 
@@ -50,38 +47,36 @@
 - (instancetype) init{
     self = [super init];
     if (self) {
-        [self loadKeychainData];
+
     }
     return self;
 }
 
-- (void) loadKeychainData{
-    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:PASSWORD_KEY accessGroup:@"YOUR_APP_ID_HERE.com.instagrame"];
-    [wrapper setObject:@"MY_APP_CREDENTIALS" forKey:(__bridge id)kSecAttrService];
-	self.passwordItem = wrapper;
-    
-	wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:EMAIL_KEY accessGroup:@"YOUR_APP_ID_HERE.com.instagrame"];
-    [wrapper setObject:@"MY_APP_CREDENTIALS" forKey:(__bridge id)kSecAttrService];
-    self.emailItem = wrapper;
-}
-
 - (NSString*) myEmail{
-    return  [self.emailItem objectForKey:EMAIL_KEY];
+    return [FDKeychain itemForKey: EMAIL_KEY
+                       forService: @"Instagrame"
+                            error:NULL];
 }
 
 - (NSString*) myPassword{
-    return  [self.passwordItem objectForKey:PASSWORD_KEY];
+    return  [FDKeychain itemForKey: EMAIL_KEY
+                        forService: @"Instagrame"
+                             error:NULL];
 }
 
 - (void) setMyEmail:(NSString*) email{
-    [self.emailItem setObject:email forKey:EMAIL_KEY];
+    [FDKeychain saveItem: email
+                  forKey: EMAIL_KEY
+              forService: @"Instagrame"
+                   error:NULL];
 }
 
 - (void) setMyPassword: (NSString*) password{
-    [self.passwordItem setObject:password forKey:PASSWORD_KEY];
+    [FDKeychain saveItem: password
+                  forKey: PASSWORD_KEY
+              forService: @"Instagrame"
+                   error:NULL];
 }
-
-#pragma mark InstagrameDataSource
 
 - (BOOL) isAuthorizedWithService: (AuthorizationServiceType)service{
     switch (service) {
@@ -111,7 +106,7 @@
             }
             
             [[VKConnector sharedInstance] startWithAppID: @"4473650"
-                                              permissons: @[@"wall", @"friends", @"offline"]
+                                              permissons: @[@"wall", @"friends", @"offline", @"email"]
                                                  webView: self.authDelegate.webView
                                                 delegate: self];
             break;
@@ -127,7 +122,7 @@
                                                    self.myPassword = data[PASSWORD_KEY];
                                                    [self.authDelegate authorizationSuccess:[instagrameContext.synchronizer syncUser:[User convertFromParseUser:result]]];
                                                }else{
-                                                   [self.authDelegate authorizationError:nil];
+                                                   [self.authDelegate authorizationError:[NSError errorWithDomain:@"authorize" code:0 userInfo:@{NSLocalizedDescriptionKey:@"Wrong email or password"}]];
                                                }
                                                
                                            }];
@@ -136,6 +131,17 @@
     }
 }
 
+- (void) createUserForVkInfo: (NSDictionary*) info{
+    NSDictionary* preparedInfo = [User convertFromVkUser:info];
+    [instagrameContext.requester addUserFromVk:preparedInfo
+                                    completion:^(BOOL ok, NSDictionary* result){
+                                        if (ok && result) {
+                                            [self.authDelegate authorizationSuccess:[instagrameContext.synchronizer syncUser:[User convertFromParseUser:result]]];
+                                        }else{
+                                            [self.authDelegate authorizationError:@"Couldn't create User form VK info"];
+                                        }
+                                    }];
+}
 #pragma mark - VKConnectorDelegate
 
 - (void) VKConnector:(VKConnector *)connector
@@ -164,40 +170,19 @@ accessTokenRenewalFailed:(VKAccessToken *)accessToken {
     
     if ([request.signature isEqualToString:@"info:"]) {
         NSDictionary *info = response[@"response"][0];
-        [self loadedMyInfo:info];
-    }
-}
+        NSLog(@"User info:\n%@", info);
+        [instagrameContext.requester userForVKId:info[@"uid"]
+                                       completion:^(BOOL ok, NSDictionary* result){
+                                           if (ok && result) {
+                                               [self.authDelegate authorizationSuccess:[instagrameContext.synchronizer syncUser:[User convertFromParseUser:result]]];
+                                           }else if(ok) {
+                                               [self createUserForVkInfo:info];
+                                           }else{
+                                               [self.authDelegate authorizationError:@"Unknown Error"];
+                                           }
+                                       }];
 
-- (void)loadedMyInfo:(NSDictionary*)info{
-    
-    NSString* name = info[@"first_name"];
-    NSString *imgPath = info[@"photo_100"];
-    
-    VKStorageItem *item = [[VKStorage sharedStorage]
-                           storageItemForUserID:[VKUser currentUser].accessToken.userID];
-    
-    NSData *imgData = [item.cache cacheForURL:[NSURL URLWithString:imgPath]];
-    
-    if (nil == imgData) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            NSData *imgTmpData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imgPath]];
-            
-            //  добавляем изображение в кэш и устанавливаем время жизни кэша равным одному дню
-            [item.cache addCache:imgTmpData
-                          forURL:[NSURL URLWithString:imgPath]
-                        liveTime:VKCacheLiveTimeOneMonth];
-            //            [self createUser:name img:imgTmpData];
-            //            dispatch_async(dispatch_get_main_queue(), ^
-            //                           {
-            //                               [self.authDelegate authorizationSuccess:[InstagrameContext instance].me];
-            //                           });
-        });
-    } else {
-        
-        //        [self createUser:name img:imgData];
-        //        [self.authDelegate authorizationSuccess:[InstagrameContext instance].me];
     }
-    
 }
 
 - (void)VKRequest:(VKRequest *)request captchaSid:(NSString *)captchaSid captchaImage:(NSURL *)captchaImage{

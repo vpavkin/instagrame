@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Authorizer, Requester, Synchronizer;
+@class Authorizer, Requester, Synchronizer, User;
 
 #define instagrameContext [InstagrameContext instance]
 
@@ -34,5 +34,7 @@
 @property (strong, nonatomic) Authorizer* authorizer;
 @property (strong, nonatomic) Requester* requester;
 @property (strong, nonatomic) Synchronizer* synchronizer;
+
+@property (strong, nonatomic) User* me;
 
 @end

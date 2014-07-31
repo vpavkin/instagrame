@@ -2,7 +2,7 @@
 //  User.h
 //  Instagrame
 //
-//  Created by vpavkin on 30.07.14.
+//  Created by vpavkin on 31.07.14.
 //  Copyright (c) 2014 instagrame. All rights reserved.
 //
 
@@ -16,11 +16,12 @@
 @property (nonatomic, retain) NSString * avatarURL;
 @property (nonatomic, retain) NSNumber * coins;
 @property (nonatomic, retain) NSDate * createdAt;
+@property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSNumber * karma;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * objectId;
 @property (nonatomic, retain) NSDate * updatedAt;
-@property (nonatomic, retain) NSString * email;
+@property (nonatomic, retain) NSNumber * vkId;
 @property (nonatomic, retain) NSSet *picturesMade;
 @property (nonatomic, retain) NSSet *picturesSubscribed;
 @property (nonatomic, retain) NSSet *picturesVisited;

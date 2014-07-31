@@ -14,4 +14,9 @@
           andPassword: (NSString*) password
            completion: (void(^)(BOOL success, NSDictionary *data))completion;
 
+- (void) userForVKId:(NSString*) vkId
+           completion: (void(^)(BOOL success, NSDictionary *data))completion;
+
+- (void) addUserFromVk:(NSDictionary*) preparedInfo
+            completion:(void(^)(BOOL success, NSDictionary *data))completion;
 @end

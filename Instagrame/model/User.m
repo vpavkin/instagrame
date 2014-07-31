@@ -2,7 +2,7 @@
 //  User.m
 //  Instagrame
 //
-//  Created by vpavkin on 30.07.14.
+//  Created by vpavkin on 31.07.14.
 //  Copyright (c) 2014 instagrame. All rights reserved.
 //
 
@@ -16,11 +16,12 @@
 @dynamic avatarURL;
 @dynamic coins;
 @dynamic createdAt;
+@dynamic email;
 @dynamic karma;
 @dynamic name;
 @dynamic objectId;
 @dynamic updatedAt;
-@dynamic email;
+@dynamic vkId;
 @dynamic picturesMade;
 @dynamic picturesSubscribed;
 @dynamic picturesVisited;

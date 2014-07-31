@@ -11,6 +11,7 @@
 #import "InstagrameContext.h"
 #import "User.h"
 #import "User+Addon.h"
+#import "Picture.h"
 
 
 @interface Synchronizer ()
@@ -36,7 +37,7 @@
     if (!coreUser.updatedAt || ([coreUser.updatedAt compare:user[UPDATED_AT]] == NSOrderedAscending)){
         coreUser = [coreUser updateWithActualData:user];
     }
-    NSLog(@"Syncronized core user:\n %@",coreUser);
+    NSLog(@"Syncronized core user:\n %@", coreUser);
     return coreUser;
 }
 

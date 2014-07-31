@@ -35,6 +35,4 @@ enum AuthorizationServiceType : NSInteger {
 @property (strong, nonatomic, readonly) NSString* myEmail;
 @property (strong, nonatomic, readonly) NSString* myPassword;
 
-@property (strong, nonatomic) User* me;
-
 @end
