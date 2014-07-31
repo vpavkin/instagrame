@@ -47,32 +47,4 @@
     return UIStatusBarStyleLightContent;
 }
 
-#pragma mark UITableView
-
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section{
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *simpleTableIdentifier = @"GameSummaryCell";
-    
-    GameSummaryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (!cell) {
-        cell = [[GameSummaryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-    }
-    
-    NSArray *colors = @[ Rgb2UIColor(255,59,48),
-                         Rgb2UIColor(76,217,100),
-                         Rgb2UIColor(52,170,220)];
-    NSArray *names = @[@"Сфоткай Чернова", @"Сфоткай кота в мешке", @"Сфоткай фотоаппарат"];
-    cell.name = names[indexPath.row];
-    cell.backgroundColor = colors[indexPath.row % colors.count];
-    
-    return cell;
-}
-
-
 @end

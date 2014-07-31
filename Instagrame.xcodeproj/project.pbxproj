@@ -10,6 +10,9 @@
 		7ABEC41CA48D4114B63B61B1 /* libPods-Instagrame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2064E166E894BC781C75F58 /* libPods-Instagrame.a */; };
 		84068F88198633D8009FD331 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 84068F87198633D8009FD331 /* Picture.m */; };
 		84068F8E198633D9009FD331 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 84068F8D198633D9009FD331 /* Room.m */; };
+		840AE50A198A73BB008B0CDC /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840AE509198A73BB008B0CDC /* CoreDataTableViewController.m */; };
+		840AE50D198A746B008B0CDC /* Room+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 840AE50C198A746B008B0CDC /* Room+Addon.m */; };
+		840AE510198A7812008B0CDC /* RelevantGamesCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840AE50F198A7812008B0CDC /* RelevantGamesCDTVC.m */; };
 		840B3556197ED5640050763B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B3555197ED5640050763B /* Foundation.framework */; };
 		840B3558197ED5640050763B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B3557197ED5640050763B /* CoreGraphics.framework */; };
 		840B355A197ED5640050763B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B3559197ED5640050763B /* UIKit.framework */; };
@@ -34,7 +37,6 @@
 		849D8A35198A31760081944F /* Synchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D8A34198A31760081944F /* Synchronizer.m */; };
 		849D8A3E198A63A10081944F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D8A3D198A63A10081944F /* User.m */; };
 		84BE0D8C197FEB7C00E72F88 /* InstagrameContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE0D8B197FEB7C00E72F88 /* InstagrameContext.m */; };
-		84BE0D8F1980DA7900E72F88 /* Room+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE0D8E1980DA7900E72F88 /* Room+Addon.m */; };
 		84BE0D921980DD1F00E72F88 /* Picture+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE0D911980DD1F00E72F88 /* Picture+Addon.m */; };
 		84EE456D19862E4100DDD6AB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84EE456B19862E4100DDD6AB /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
@@ -55,6 +57,12 @@
 		84068F87198633D8009FD331 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Picture.m; path = model/Picture.m; sourceTree = "<group>"; };
 		84068F8C198633D9009FD331 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Room.h; path = model/Room.h; sourceTree = "<group>"; };
 		84068F8D198633D9009FD331 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Room.m; path = model/Room.m; sourceTree = "<group>"; };
+		840AE508198A73BB008B0CDC /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		840AE509198A73BB008B0CDC /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		840AE50B198A746B008B0CDC /* Room+Addon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Room+Addon.h"; path = "model/Room+Addon.h"; sourceTree = "<group>"; };
+		840AE50C198A746B008B0CDC /* Room+Addon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Room+Addon.m"; path = "model/Room+Addon.m"; sourceTree = "<group>"; };
+		840AE50E198A7812008B0CDC /* RelevantGamesCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelevantGamesCDTVC.h; sourceTree = "<group>"; };
+		840AE50F198A7812008B0CDC /* RelevantGamesCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelevantGamesCDTVC.m; sourceTree = "<group>"; };
 		840B3552197ED5640050763B /* Instagrame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagrame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		840B3555197ED5640050763B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		840B3557197ED5640050763B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -94,8 +102,6 @@
 		849D8A3D198A63A10081944F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = model/User.m; sourceTree = "<group>"; };
 		84BE0D8A197FEB7C00E72F88 /* InstagrameContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstagrameContext.h; path = model/InstagrameContext.h; sourceTree = "<group>"; };
 		84BE0D8B197FEB7C00E72F88 /* InstagrameContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstagrameContext.m; path = model/InstagrameContext.m; sourceTree = "<group>"; };
-		84BE0D8D1980DA7900E72F88 /* Room+Addon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Room+Addon.h"; path = "model/Room+Addon.h"; sourceTree = "<group>"; };
-		84BE0D8E1980DA7900E72F88 /* Room+Addon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Room+Addon.m"; path = "model/Room+Addon.m"; sourceTree = "<group>"; };
 		84BE0D901980DD1F00E72F88 /* Picture+Addon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Picture+Addon.h"; path = "model/Picture+Addon.h"; sourceTree = "<group>"; };
 		84BE0D911980DD1F00E72F88 /* Picture+Addon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Picture+Addon.m"; path = "model/Picture+Addon.m"; sourceTree = "<group>"; };
 		84EE456C19862E4100DDD6AB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -175,6 +181,8 @@
 				845DECF5197FCC1200F9138F /* AuthorizeViewController.m */,
 				840B356A197ED5640050763B /* InstagrameViewController.h */,
 				840B356B197ED5640050763B /* InstagrameViewController.m */,
+				840AE50E198A7812008B0CDC /* RelevantGamesCDTVC.h */,
+				840AE50F198A7812008B0CDC /* RelevantGamesCDTVC.m */,
 				840B356D197ED5640050763B /* Images.xcassets */,
 				840B355C197ED5640050763B /* Supporting Files */,
 			);
@@ -222,14 +230,14 @@
 		845DECF0197FC66F00F9138F /* model */ = {
 			isa = PBXGroup;
 			children = (
+				840AE50B198A746B008B0CDC /* Room+Addon.h */,
+				840AE50C198A746B008B0CDC /* Room+Addon.m */,
 				849D8A3C198A63A10081944F /* User.h */,
 				849D8A3D198A63A10081944F /* User.m */,
 				84068F8C198633D9009FD331 /* Room.h */,
 				84068F8D198633D9009FD331 /* Room.m */,
 				84068F86198633D8009FD331 /* Picture.h */,
 				84068F87198633D8009FD331 /* Picture.m */,
-				84BE0D8D1980DA7900E72F88 /* Room+Addon.h */,
-				84BE0D8E1980DA7900E72F88 /* Room+Addon.m */,
 				84BE0D901980DD1F00E72F88 /* Picture+Addon.h */,
 				84BE0D911980DD1F00E72F88 /* Picture+Addon.m */,
 				845DECED197FC66700F9138F /* User+Addon.h */,
@@ -244,6 +252,8 @@
 			children = (
 				849D8A30198A30210081944F /* FDKeychain.h */,
 				849D8A31198A30210081944F /* FDKeychain.m */,
+				840AE508198A73BB008B0CDC /* CoreDataTableViewController.h */,
+				840AE509198A73BB008B0CDC /* CoreDataTableViewController.m */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -399,9 +409,11 @@
 			files = (
 				845DECF6197FCC1200F9138F /* AuthorizeViewController.m in Sources */,
 				845DECEF197FC66700F9138F /* User+Addon.m in Sources */,
+				840AE50A198A73BB008B0CDC /* CoreDataTableViewController.m in Sources */,
 				840B359D197F01440050763B /* GameSummaryTableViewCell.m in Sources */,
 				84BE0D921980DD1F00E72F88 /* Picture+Addon.m in Sources */,
 				849D8A3E198A63A10081944F /* User.m in Sources */,
+				840AE510198A7812008B0CDC /* RelevantGamesCDTVC.m in Sources */,
 				849D8A2C1987C3290081944F /* Authorizer.m in Sources */,
 				840B356C197ED5640050763B /* InstagrameViewController.m in Sources */,
 				849D8A2F1987C9BE0081944F /* Requester.m in Sources */,
@@ -409,7 +421,7 @@
 				840B3562197ED5640050763B /* main.m in Sources */,
 				849D8A32198A30210081944F /* FDKeychain.m in Sources */,
 				84068F88198633D8009FD331 /* Picture.m in Sources */,
-				84BE0D8F1980DA7900E72F88 /* Room+Addon.m in Sources */,
+				840AE50D198A746B008B0CDC /* Room+Addon.m in Sources */,
 				849D8A35198A31760081944F /* Synchronizer.m in Sources */,
 				84EE456D19862E4100DDD6AB /* Model.xcdatamodeld in Sources */,
 				84068F8E198633D9009FD331 /* Room.m in Sources */,
