@@ -11,6 +11,8 @@
 #import "InstagrameContext.h"
 #import "User.h"
 #import "User+Addon.h"
+#import "Room.h"
+#import "Room+Addon.h"
 #import "Picture.h"
 
 
@@ -39,6 +41,22 @@
     }
     NSLog(@"Syncronized core user:\n %@", coreUser);
     return coreUser;
+}
+
+- (Room*) syncRoom:(NSDictionary*) room{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:ROOM_CLASS];
+    request.predicate = [NSPredicate predicateWithFormat:@"objectId = %@", room[@"objectId"]];
+    
+    NSError* error;
+    Room* coreRoom = [[self.document.managedObjectContext executeFetchRequest:request error:&error] firstObject];
+    if (!coreRoom)
+        coreRoom = [NSEntityDescription insertNewObjectForEntityForName:ROOM_CLASS inManagedObjectContext:self.document.managedObjectContext];
+    if (!coreRoom.updatedAt || ([coreRoom.updatedAt compare:room[UPDATED_AT]] == NSOrderedAscending)){
+        coreRoom = [coreRoom updateWithActualData:room];
+        coreRoom.owner = [self syncUser:room[@"owner"]];
+    }
+    NSLog(@"Syncronized core room:\n %@", coreRoom);
+    return coreRoom;
 }
 
 @end

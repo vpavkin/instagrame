@@ -45,7 +45,7 @@
 
 - (User*) updateWithActualData:(NSDictionary*) user{
     for (NSString *key in user) {
-        if (![key isEqualToString:@"password"]) {
+        if (![key isEqualToString:@"password"] && ![key isEqualToString:@"__type"] && ![key isEqualToString:@"className"]) {
             [self setValue:user[key] forKey:key];
             
         }

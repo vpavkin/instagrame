@@ -2,7 +2,7 @@
 //  Room.h
 //  Instagrame
 //
-//  Created by vpavkin on 30.07.14.
+//  Created by vpavkin on 04.08.14.
 //  Copyright (c) 2014 instagrame. All rights reserved.
 //
 
@@ -15,12 +15,12 @@
 
 @property (nonatomic, retain) NSDate * createdAt;
 @property (nonatomic, retain) NSDate * finishDate;
-@property (nonatomic, retain) NSNumber * limit;
+@property (nonatomic, retain) NSNumber * playersLimit;
 @property (nonatomic, retain) NSString * objectId;
 @property (nonatomic, retain) NSDate * startDate;
 @property (nonatomic, retain) NSString * task;
 @property (nonatomic, retain) NSDate * updatedAt;
-@property (nonatomic, retain) NSDate * voteDate;
+@property (nonatomic, retain) NSDate * voteStartDate;
 @property (nonatomic, retain) User *owner;
 @property (nonatomic, retain) NSSet *pictures;
 @property (nonatomic, retain) NSSet *players;

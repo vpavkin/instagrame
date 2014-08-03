@@ -8,6 +8,7 @@
 
 #import "Requester.h"
 #import "InstagrameContext.h"
+#import "User.h"
 
 #define APP_URL @"https://api.parse.com/1/"
 #define APP_ID @"QEFpYvxRkPGnVWKgLvttKZTBIlaUUgF7xR7mPDEt"
@@ -92,8 +93,22 @@
       withPredicate: (NSDictionary*)predicate
          completion:(void (^)(BOOL success, NSArray *data))completion{
     
+    [self queryClass:class withPredicate:predicate include:nil completion:completion];
+    
+}
+
+- (void) queryClass: (NSString*) class
+      withPredicate: (NSDictionary*)predicate
+            include: (NSArray*) keys
+         completion:(void (^)(BOOL success, NSArray *data))completion{
+    
+    NSMutableDictionary *params = [@{@"where":[self jsonFromDictionary:predicate]} mutableCopy];
+    if (keys.count) {
+        params[@"include"] = [keys componentsJoinedByString:@","];
+    }
+    
     NSURL *url = [NSURL URLWithString:[self url:[self urlForClass:class]
-                                     withParams:@{@"where":[self jsonFromDictionary:predicate]}]];
+                                     withParams:params]];
     NSLog(@"Querying url: %@", [url.description stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:APP_ID forHTTPHeaderField:@"X-Parse-Application-Id"];
@@ -151,6 +166,35 @@
                            }];
     
     
+}
+
+- (NSDictionary*) pointerRelationForClass:(NSString*) class objectId:(NSString*) objectId{
+    return @{
+             @"__type":@"Pointer",
+             @"className":class,
+             @"objectId":objectId
+             };
+}
+
+- (void) loadRelevantRoomsForUser: (User*) user
+                       completion:(void(^)(BOOL success, NSArray *data))completion{
+    if (!user && !user.objectId) {
+        if (completion) {
+            completion(false, nil);
+        }
+        return;
+    }
+    [self queryClass:ROOM_CLASS
+       withPredicate:@{@"$or":@[
+                               @{@"owner": [self pointerRelationForClass:USER_CLASS objectId: user.objectId]},
+                               @{@"players":[self pointerRelationForClass:USER_CLASS objectId: user.objectId]}
+                               ]}
+             include:@[@"owner"]
+          completion:^(BOOL success, NSArray *data) {
+              if (completion) {
+                  completion(success, success ? data : nil);
+              }
+          }];
 }
 
 

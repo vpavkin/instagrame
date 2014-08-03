@@ -7,19 +7,23 @@
 //
 
 #import "InstagrameViewController.h"
+#import "RelevantGamesCDTVC.h"
 #import "GameSummaryTableViewCell.h"
 #import "InstagrameContext.h"
 #import "ColorMacro.h"
 #import "User.h"
+#import "Room+Addon.h"
+#import "Requester.h"
+#import "Synchronizer.h"
 
 @interface InstagrameViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *createGameButton;
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
-@property (weak, nonatomic) IBOutlet UITableView *currentGamesTable;
 @property (weak, nonatomic) IBOutlet UILabel *noGamesPlaceholder;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *carmaLabel;
 
+@property (weak, nonatomic) RelevantGamesCDTVC *relevantGamesController;
 @end
 
 @implementation InstagrameViewController
@@ -36,11 +40,28 @@
 }
 
 - (void) viewDidLayoutSubviews{
-    CGRect frame = self.currentGamesTable.frame;
-    frame.size.height = self.currentGamesTable.contentSize.height;
-    self.currentGamesTable.frame = CGRectMake(frame.origin.x,frame.origin.y,frame.size.width,frame.size.width);
+    UITableView *tv = (UITableView*)self.relevantGamesController.view;
+    CGRect frame = tv.frame;
+    frame.size.height = tv.contentSize.height;
+    tv.frame = CGRectMake(frame.origin.x,frame.origin.y,frame.size.width,frame.size.width);
     
-    self.noGamesPlaceholder.hidden = [self.currentGamesTable visibleCells].count;
+    self.noGamesPlaceholder.hidden = [tv visibleCells].count;
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSString * segueName = segue.identifier;
+    if ([segueName isEqualToString: @"RelevantGamesES"]) {
+        self.relevantGamesController = (RelevantGamesCDTVC *) [segue destinationViewController];
+        [instagrameContext.requester loadRelevantRoomsForUser: instagrameContext.me completion:^(BOOL success, NSArray *rooms) {
+#pragma warning move syncronizing out of view controller (maybe a dataRetriever class?)
+            NSLog(@"rooms:\n%@", rooms);
+            for (NSDictionary* room in rooms) {
+                [instagrameContext.synchronizer syncRoom:[Room convertFromParseRoom:room]];
+            }
+            UITableView *tv = (UITableView*) self.relevantGamesController.view;
+            [tv reloadData];
+        }];
+    }
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{

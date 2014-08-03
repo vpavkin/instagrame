@@ -11,5 +11,7 @@
 @interface Room (Addon)
 
 @property(nonatomic, readonly, getter = isFinished) BOOL finished;
++ (NSDictionary*) convertFromParseRoom:(NSDictionary*) room;
+- (Room*) updateWithActualData:(NSDictionary*) room;
 
 @end

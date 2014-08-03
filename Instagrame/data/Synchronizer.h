@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class User;
+@class User, Room;
 
 @interface Synchronizer : NSObject
 
 - (User*) syncUser:(NSDictionary*) user;
+- (Room*) syncRoom:(NSDictionary*) room;
 
 @end

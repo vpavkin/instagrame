@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class User;
+
 @interface Requester : NSObject
 
 - (void) userForEmail:(NSString*) email
@@ -19,4 +21,7 @@
 
 - (void) addUserFromVk:(NSDictionary*) preparedInfo
             completion:(void(^)(BOOL success, NSDictionary *data))completion;
+
+- (void) loadRelevantRoomsForUser: (User*) user
+                       completion:(void(^)(BOOL success, NSArray *data))completion;
 @end

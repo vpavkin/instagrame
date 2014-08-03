@@ -2,7 +2,7 @@
 //  Room.m
 //  Instagrame
 //
-//  Created by vpavkin on 30.07.14.
+//  Created by vpavkin on 04.08.14.
 //  Copyright (c) 2014 instagrame. All rights reserved.
 //
 
@@ -15,12 +15,12 @@
 
 @dynamic createdAt;
 @dynamic finishDate;
-@dynamic limit;
+@dynamic playersLimit;
 @dynamic objectId;
 @dynamic startDate;
 @dynamic task;
 @dynamic updatedAt;
-@dynamic voteDate;
+@dynamic voteStartDate;
 @dynamic owner;
 @dynamic pictures;
 @dynamic players;
