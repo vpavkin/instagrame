@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, GameSummaryTableViewCellState) {
+    GameSummaryTableViewCellStateNotStarted,
+    GameSummaryTableViewCellStateInPlay,
+    GameSummaryTableViewCellStateVoting,
+    GameSummaryTableViewCellStateFinished
+};
+
 @interface GameSummaryTableViewCell : UITableViewCell
 
 @property (strong,nonatomic) NSString* name;
-@property (nonatomic) NSUInteger state;
+@property (nonatomic) GameSummaryTableViewCellState state;
 @property (nonatomic) NSTimeInterval countdown;
 @property (nonatomic) NSUInteger numberOfPlayers;
 

@@ -9,6 +9,7 @@
 #import "GameSummaryTableViewCell.h"
 
 @interface GameSummaryTableViewCell ()
+
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIView *imagesContainer;
 @property (weak, nonatomic) IBOutlet UIImageView *stateImageView;
@@ -24,8 +25,28 @@
     self.nameLabel.text = name;
 }
 
-- (void) setState:(NSUInteger)state{
-    
+- (void) setNumberOfPlayers:(NSUInteger)numberOfPlayers{
+    self.playersCountLabel.text = [NSString stringWithFormat:@"%d", numberOfPlayers];
+}
+
+- (void) setState:(GameSummaryTableViewCellState)state{
+    _state = state;
+    switch (state) {
+        case GameSummaryTableViewCellStateNotStarted:
+            self.stateImageView.image = [UIImage imageNamed:@"not_started"];
+            break;
+        case GameSummaryTableViewCellStateInPlay:
+            self.stateImageView.image = [UIImage imageNamed:@"play"];
+            break;
+        case GameSummaryTableViewCellStateFinished:
+            self.stateImageView.image = [UIImage imageNamed:@"finished"];
+            break;
+
+        case GameSummaryTableViewCellStateVoting:
+            self.stateImageView.image = [UIImage imageNamed:@"voting"];
+            break;
+
+    }
 }
 
 - (void) addPhoto:(UIImage *)photo{

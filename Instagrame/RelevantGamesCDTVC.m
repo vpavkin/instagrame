@@ -10,6 +10,7 @@
 #import "ColorMacro.h"
 #import "InstagrameContext.h"
 #import "GameSummaryTableViewCell.h"
+#import "Room.h"
 
 @interface RelevantGamesCDTVC ()
 
@@ -32,11 +33,6 @@
 
 #pragma mark UITableView
 
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section{
-    return 1;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *simpleTableIdentifier = @"GameSummaryCell";
@@ -47,11 +43,14 @@
         cell = [[GameSummaryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
+    Room *room = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+    
     NSArray *colors = @[ Rgb2UIColor(255,59,48),
                          Rgb2UIColor(76,217,100),
                          Rgb2UIColor(52,170,220)];
-    NSArray *names = @[@"Сфоткай Черновa \nс ложкой во\nрту", @"Сфоткай кота в мешке", @"Сфоткай фотоаппарат"];
-    cell.name = names[indexPath.row];
+    cell.name = room.task;
+    cell.state = room.state;
     cell.backgroundColor = colors[indexPath.row % colors.count];
     
     return cell;
