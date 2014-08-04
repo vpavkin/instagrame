@@ -50,7 +50,7 @@
                          Rgb2UIColor(76,217,100),
                          Rgb2UIColor(52,170,220)];
     cell.name = room.task;
-    cell.state = room.state;
+    //cell.state = room.state;
     cell.backgroundColor = colors[indexPath.row % colors.count];
     
     return cell;
