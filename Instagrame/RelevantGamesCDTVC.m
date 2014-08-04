@@ -11,6 +11,7 @@
 #import "InstagrameContext.h"
 #import "GameSummaryTableViewCell.h"
 #import "Room.h"
+#import "User.h"
 
 @interface RelevantGamesCDTVC ()
 
@@ -20,7 +21,7 @@
 
 - (void) viewDidLoad{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
-    request.predicate = [NSPredicate predicateWithFormat:@"owner=%@",instagrameContext.me];
+    request.predicate = [NSPredicate predicateWithFormat:@"(owner = %@) OR (ANY players = %@)",instagrameContext.me,instagrameContext.me];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"startDate"
                                                               ascending:NO]];
     
@@ -49,8 +50,8 @@
     NSArray *colors = @[ Rgb2UIColor(255,59,48),
                          Rgb2UIColor(76,217,100),
                          Rgb2UIColor(52,170,220)];
-    cell.name = room.task;
-    //cell.state = room.state;
+    cell.room = room;
+    
     cell.backgroundColor = colors[indexPath.row % colors.count];
     
     return cell;

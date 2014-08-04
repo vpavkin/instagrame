@@ -8,9 +8,18 @@
 
 #import "Room.h"
 
+typedef NS_ENUM(NSInteger, RoomState) {
+    RoomStateNotStarted,
+    RoomStateInPlay,
+    RoomStateVoting,
+    RoomStateFinished
+};
+
 @interface Room (Addon)
 
 @property(nonatomic, readonly, getter = isFinished) BOOL finished;
+@property(nonatomic, readonly) RoomState state;
+
 + (NSDictionary*) convertFromParseRoom:(NSDictionary*) room;
 - (Room*) updateWithActualData:(NSDictionary*) room;
 

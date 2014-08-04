@@ -18,6 +18,18 @@
     return [self.finishDate compare:[NSDate date]] == NSOrderedAscending;
 }
 
+-(RoomState) state{
+    if ([self.startDate compare:[NSDate date]] == NSOrderedDescending) {
+        return RoomStateNotStarted;
+    }else if([self.voteStartDate compare:[NSDate date]] == NSOrderedDescending){
+        return RoomStateInPlay;
+    }else if([self.finishDate compare:[NSDate date]] == NSOrderedDescending){
+        return RoomStateVoting;
+    }else {
+        return RoomStateFinished;
+    }
+}
+
 + (NSDictionary*) convertFromParseRoom:(NSDictionary*) parseRoom{
     NSMutableDictionary* room = [parseRoom mutableCopy];
     

@@ -12,6 +12,7 @@
 #import "InstagrameContext.h"
 #import "ColorMacro.h"
 #import "User.h"
+#import "Room.h"
 #import "Room+Addon.h"
 #import "Requester.h"
 #import "Synchronizer.h"
@@ -56,7 +57,10 @@
 #pragma warning move syncronizing out of view controller (maybe a dataRetriever class?)
             NSLog(@"rooms:\n%@", rooms);
             for (NSDictionary* room in rooms) {
-                [instagrameContext.synchronizer syncRoom:[Room convertFromParseRoom:room]];
+                Room* r = [instagrameContext.synchronizer syncRoom:[Room convertFromParseRoom:room]];
+                if (![instagrameContext.me.roomsOwned containsObject:r]) {
+                    [r addPlayersObject:instagrameContext.me];
+                }
             }
             UITableView *tv = (UITableView*) self.relevantGamesController.view;
             [tv reloadData];
