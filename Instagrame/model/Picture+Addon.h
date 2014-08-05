@@ -1,5 +1,5 @@
 //
-//  Picture.h
+//  Picture+Addon.h
 //  Instagrame
 //
 //  Created by vpavkin on 24.07.14.
@@ -13,16 +13,11 @@
 
 @interface Picture (Addon)
 
-+ (instancetype) picture:(NSString*) uid
-                  author:(User*) author
-                    room:(Room*) room
-                   image:(NSString*) image
-                  voters:(NSArray*) voters
-             subscribers:(NSArray*) subscribers
-                visitors:(NSArray*) visitors
-              submitDate:(NSDate*) submitDate;
+@property (nonatomic, readonly) BOOL isSubscribed;
+@property (nonatomic, readonly) BOOL isVisited;
 
-@property (nonatomic, getter = isSubscribed) BOOL subscribed;
-@property (nonatomic, getter = isVisited) BOOL visited;
++ (NSDictionary*) convertFromParsePicture:(NSDictionary*) room;
++ (NSArray*) convertParsePictures:(NSArray*) pictures;
+- (Picture*) updateWithActualData:(NSDictionary*) picture;
 
 @end

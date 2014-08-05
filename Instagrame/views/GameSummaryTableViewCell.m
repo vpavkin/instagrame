@@ -9,6 +9,7 @@
 #import "GameSummaryTableViewCell.h"
 #import "Room.h"
 #import "Room+Addon.h"
+#import "Picture.h"
 
 @interface GameSummaryTableViewCell ()
 
@@ -31,6 +32,7 @@
     self.playersCountLabel.text = [NSString stringWithFormat:@"%lu", _room.players.count];
     [self updateState];
     [self updateCountdown];
+    [self updatePictures];
 }
 
 
@@ -92,8 +94,20 @@
     }
 }
 
-- (void) addPhoto:(UIImage *)photo{
-    [self.imagesContainer addSubview:[[UIImageView alloc] initWithImage:photo ]];
+- (void) updatePictures{
+    NSArray* pics = [self.room.pictures allObjects];
+    int max = MIN(pics.count, 6);
+    for (int i = 0; i < max; i++) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+            Picture* pic = pics[i];
+            UIImage* imgd = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:pic.photoURL]]];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                UIImageView *img = (UIImageView*)self.imagesContainer.subviews[i];
+                img.image= imgd;
+            });
+        });
+    }
 }
+
 
 @end

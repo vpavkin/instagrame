@@ -2,7 +2,7 @@
 //  Picture.h
 //  Instagrame
 //
-//  Created by vpavkin on 30.07.14.
+//  Created by vpavkin on 05.08.14.
 //  Copyright (c) 2014 instagrame. All rights reserved.
 //
 
@@ -14,7 +14,7 @@
 @interface Picture : NSManagedObject
 
 @property (nonatomic, retain) NSDate * createdAt;
-@property (nonatomic, retain) NSString * image;
+@property (nonatomic, retain) NSString * photoURL;
 @property (nonatomic, retain) NSString * objectId;
 @property (nonatomic, retain) NSDate * submitDate;
 @property (nonatomic, retain) NSDate * updatedAt;

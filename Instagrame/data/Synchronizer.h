@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class User, Room;
+@class User, Room, Picture;
 
 @interface Synchronizer : NSObject
 
@@ -17,5 +17,8 @@
 
 - (Room*) syncRoom:(NSDictionary*) room;
 - (NSArray*) syncRooms:(NSArray*) rooms;
+
+- (Picture*) syncPicture:(NSDictionary*) picture;
+- (NSArray*) syncPictures:(NSArray*) pictures forRoom: (Room*) room;
 
 @end

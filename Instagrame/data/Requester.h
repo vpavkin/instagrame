@@ -26,4 +26,6 @@
                        completion:(void(^)(BOOL success, NSArray *data))completion;
 - (void) playersForRoom: (Room*) room
                      completion:(void(^)(BOOL success, NSArray *players))completion;
+- (void) picturesForRoom: (Room*) room
+             completion:(void(^)(BOOL success, NSArray *pictures))completion;
 @end

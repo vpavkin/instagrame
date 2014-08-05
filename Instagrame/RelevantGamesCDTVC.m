@@ -27,6 +27,7 @@
     request.predicate = [NSPredicate predicateWithFormat:@"(owner = %@) OR (ANY players = %@)",instagrameContext.me,instagrameContext.me];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"startDate"
                                                               ascending:NO]];
+    request.fetchLimit = 3;
     
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request

@@ -14,6 +14,7 @@
 #import "Room.h"
 #import "Room+Addon.h"
 #import "Picture.h"
+#import "Picture+Addon.h"
 
 
 @interface Synchronizer ()
@@ -77,5 +78,35 @@
     }
     return coreRooms;
 }
+
+- (Picture*) syncPicture:(NSDictionary*) picture{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PICTURE_CLASS];
+    request.predicate = [NSPredicate predicateWithFormat:@"objectId = %@", picture[@"objectId"]];
+    
+    NSError* error;
+    Picture* corePicture = [[self.document.managedObjectContext executeFetchRequest:request error:&error] firstObject];
+    if (!corePicture)
+        corePicture = [NSEntityDescription insertNewObjectForEntityForName:PICTURE_CLASS inManagedObjectContext:self.document.managedObjectContext];
+    if (!corePicture.updatedAt || ([corePicture.updatedAt compare:picture[UPDATED_AT]] == NSOrderedAscending)){
+        corePicture = [corePicture updateWithActualData:picture];
+        corePicture.author = [self syncUser:picture[@"author"]];
+        corePicture.room = [self syncRoom:picture[@"room"]];
+    }
+    NSLog(@"Syncronized core picture:\n %@", corePicture);
+    return corePicture;
+
+}
+
+- (NSArray*) syncPictures:(NSArray*) pictures forRoom: (Room*) room{
+    NSMutableArray *corePictures = [NSMutableArray array];
+    for (NSDictionary* picture in pictures) {
+        Picture* corePicture = [self syncPicture:picture];
+        [corePictures addObject:corePicture];
+    }
+    [room addPictures:[NSSet setWithArray:corePictures]];
+    return corePictures;
+
+}
+
 
 @end

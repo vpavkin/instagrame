@@ -15,6 +15,8 @@
 #import "User+Addon.h"
 #import "Room.h"
 #import "Room+Addon.h"
+#import "Picture.h"
+#import "Picture+Addon.h"
 #import "Requester.h"
 #import "Synchronizer.h"
 
@@ -72,7 +74,12 @@
             if(success){
                 [instagrameContext.synchronizer syncPlayers:[User convertParseUsers:players] forRoom:rooms[index]];
             }
-            [self chainedInfoForRoom:rooms index:index+1 completion:completion];
+            [instagrameContext.requester picturesForRoom:rooms[index] completion:^(BOOL success, NSArray *pictures) {
+                if(success){
+                    [instagrameContext.synchronizer syncPictures:[Picture convertParsePictures:pictures] forRoom:rooms[index]];
+                }
+                [self chainedInfoForRoom:rooms index:index+1 completion:completion];
+            }];
         }];
     }else{
         if (completion) {

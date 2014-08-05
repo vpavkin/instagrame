@@ -222,4 +222,23 @@
           }];
 }
 
+- (void) picturesForRoom: (Room*) room
+              completion:(void(^)(BOOL success, NSArray *pictures))completion{
+    if (!room || !room.objectId) {
+        if (completion) {
+            completion(false, nil);
+        }
+        return;
+    }
+    [self queryClass:PICTURE_CLASS
+       withPredicate:@{@"room":[self pointerRelationForClass:ROOM_CLASS objectId: room.objectId]}
+             include:@[@"room.owner",@"author"]
+          completion:^(BOOL success, NSArray *data) {
+              if (completion) {
+                  completion(success, success ? data : nil);
+              }
+          }];
+
+}
+
 @end
