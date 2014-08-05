@@ -6,10 +6,57 @@
 //  Copyright (c) 2014 instagrame. All rights reserved.
 //
 
+#import "User.h"
 #import "User+Addon.h"
 #import "InstagrameContext.h"
 
 @implementation User (Addon)
+
+-(NSAttributedString*) nameWithKarma{
+    NSMutableAttributedString *result = [[NSMutableAttributedString alloc]initWithString:self.name
+                                                                              attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [result appendAttributedString: [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" (%@)",self.karmaString]
+                                                                  attributes:@{NSForegroundColorAttributeName:self.karmaColor}]];
+    return result;
+}
+
+-(NSString*) karmaString{
+    if (self.karma.intValue > 0) {
+        return [NSString stringWithFormat:@"+%@", self.karma];
+    }
+    return self.karma.description;
+}
+
+-(UIColor*) karmaColor{
+    UIColor* baseColor;
+    if (self.karma.intValue < 0) {
+        baseColor = [UIColor redColor];
+    }else if(self.karma.intValue > 0){
+        baseColor = Rgb2UIColor(0x4c, 0xd9, 0x64);
+    }else
+        return [UIColor whiteColor];
+    
+    return [User changeBrightness:baseColor amount: (fabs(100-self.karma.intValue)/100.0)];
+}
+
++ (UIColor*)changeBrightness:(UIColor*)color amount:(CGFloat)amount{
+    
+    CGFloat hue, saturation, brightness, alpha;
+    if ([color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha]) {
+        brightness += (amount-1.0);
+        brightness = MAX(MIN(brightness, 1.0), 0.0);
+        return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha];
+    }
+    
+    CGFloat white;
+    if ([color getWhite:&white alpha:&alpha]) {
+        white += (amount-1.0);
+        white = MAX(MIN(white, 1.0), 0.0);
+        return [UIColor colorWithWhite:white alpha:alpha];
+    }
+    
+    return nil;
+}
 
 + (NSDictionary*) convertFromParseUser:(NSDictionary*) parseUser{
     NSMutableDictionary* user = [parseUser mutableCopy];

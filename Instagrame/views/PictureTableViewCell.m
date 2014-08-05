@@ -9,6 +9,7 @@
 #import "PictureTableViewCell.h"
 #import "Picture.h"
 #import "User.h"
+#import "User+Addon.h"
 
 @interface PictureTableViewCell ()
 
@@ -22,7 +23,8 @@
 -(void) setPicture:(Picture *)picture{
     _picture = picture;
     self.descriptionLabel.text = _picture.comment;
-    self.userLabel.text = _picture.author.name;
+    self.userLabel.attributedText = _picture.author.nameWithKarma;
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         UIImage* imgd = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_picture.photoURL]]];
         
