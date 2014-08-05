@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, RoomState) {
 @property(nonatomic, readonly) RoomState state;
 
 + (NSDictionary*) convertFromParseRoom:(NSDictionary*) room;
++ (NSArray*) convertParseRooms:(NSArray*) rooms;
 - (Room*) updateWithActualData:(NSDictionary*) room;
 
 @end

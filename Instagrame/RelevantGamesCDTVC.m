@@ -9,9 +9,12 @@
 #import "RelevantGamesCDTVC.h"
 #import "ColorMacro.h"
 #import "InstagrameContext.h"
+#import "Requester.h"
+#import "Synchronizer.h"
 #import "GameSummaryTableViewCell.h"
 #import "Room.h"
 #import "User.h"
+#import "User+Addon.h"
 
 @interface RelevantGamesCDTVC ()
 
@@ -45,14 +48,13 @@
     }
     
     Room *room = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
+    
     
     NSArray *colors = @[ Rgb2UIColor(255,59,48),
                          Rgb2UIColor(76,217,100),
                          Rgb2UIColor(52,170,220)];
-    cell.room = room;
-    
     cell.backgroundColor = colors[indexPath.row % colors.count];
+    cell.room = room;
     
     return cell;
 }

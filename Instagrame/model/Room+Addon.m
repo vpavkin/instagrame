@@ -61,6 +61,14 @@
 
 }
 
++ (NSArray*) convertParseRooms:(NSArray*) rooms{
+    NSMutableArray* result = [NSMutableArray array];
+    for (NSDictionary* room in rooms) {
+        [result addObject:[Room convertFromParseRoom:room]];
+    }
+    return result;
+}
+
 - (Room*) updateWithActualData:(NSDictionary*) room{
     for (NSString *key in room) {
         if (![key isEqualToString:@"players"] && ![key isEqualToString:@"owner"] && ![key isEqualToString:@"__type"] && ![key isEqualToString:@"className"]) {

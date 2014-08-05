@@ -9,6 +9,7 @@
 #import "Requester.h"
 #import "InstagrameContext.h"
 #import "User.h"
+#import "Room.h"
 
 #define APP_URL @"https://api.parse.com/1/"
 #define APP_ID @"QEFpYvxRkPGnVWKgLvttKZTBIlaUUgF7xR7mPDEt"
@@ -178,7 +179,7 @@
 
 - (void) loadRelevantRoomsForUser: (User*) user
                        completion:(void(^)(BOOL success, NSArray *data))completion{
-    if (!user && !user.objectId) {
+    if (!user || !user.objectId) {
         if (completion) {
             completion(false, nil);
         }
@@ -197,5 +198,28 @@
           }];
 }
 
+- (void) playersForRoom: (Room*) room
+                     completion:(void(^)(BOOL success, NSArray *players))completion{
+    if (!room || !room.objectId) {
+        if (completion) {
+            completion(false, nil);
+        }
+        return;
+    }
+    [self queryClass:USER_CLASS
+       withPredicate:@{@"$relatedTo":@{
+                               @"object":@{
+                                       @"__type":@"Pointer",
+                                       @"className":ROOM_CLASS,
+                                       @"objectId":room.objectId
+                                       },
+                               @"key":@"players"}
+                       }
+          completion:^(BOOL success, NSArray *data) {
+              if (completion) {
+                  completion(success, success ? data : nil);
+              }
+          }];
+}
 
 @end

@@ -43,6 +43,16 @@
     return coreUser;
 }
 
+- (NSArray*) syncPlayers:(NSArray*) users forRoom:(Room*) room{
+    NSMutableArray *coreUsers = [NSMutableArray array];
+    for (NSDictionary* user in users) {
+        User* coreUser = [self syncUser:user];
+        [coreUsers addObject:coreUser];
+    }
+    [room addPlayers:[NSSet setWithArray:coreUsers]];
+    return coreUsers;
+}
+
 - (Room*) syncRoom:(NSDictionary*) room{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:ROOM_CLASS];
     request.predicate = [NSPredicate predicateWithFormat:@"objectId = %@", room[@"objectId"]];
@@ -57,6 +67,15 @@
     }
     NSLog(@"Syncronized core room:\n %@", coreRoom);
     return coreRoom;
+}
+
+- (NSArray*) syncRooms:(NSArray*) rooms{
+    NSMutableArray *coreRooms = [NSMutableArray array];
+    for (NSDictionary* room in rooms) {
+        Room* coreRoom = [self syncRoom:room];
+        [coreRooms addObject:coreRoom];
+    }
+    return coreRooms;
 }
 
 @end

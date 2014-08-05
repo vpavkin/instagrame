@@ -13,6 +13,9 @@
 @interface Synchronizer : NSObject
 
 - (User*) syncUser:(NSDictionary*) user;
+- (NSArray*) syncPlayers:(NSArray*) users forRoom:(Room*) room;
+
 - (Room*) syncRoom:(NSDictionary*) room;
+- (NSArray*) syncRooms:(NSArray*) rooms;
 
 @end

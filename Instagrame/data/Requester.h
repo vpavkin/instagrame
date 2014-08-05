@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class User;
+@class User, Room;
 
 @interface Requester : NSObject
 
@@ -24,4 +24,6 @@
 
 - (void) loadRelevantRoomsForUser: (User*) user
                        completion:(void(^)(BOOL success, NSArray *data))completion;
+- (void) playersForRoom: (Room*) room
+                     completion:(void(^)(BOOL success, NSArray *players))completion;
 @end

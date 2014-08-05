@@ -33,6 +33,14 @@
     return user;
 }
 
++ (NSArray*) convertParseUsers:(NSArray*) users{
+    NSMutableArray* result = [NSMutableArray array];
+    for (NSDictionary* user in users) {
+        [result addObject:[User convertFromParseUser:user]];
+    }
+    return result;
+}
+
 + (NSDictionary*) convertFromVkUser:(NSDictionary*) vkUser{
     return @{
              @"name":[@[vkUser[@"first_name"],vkUser[@"last_name"]] componentsJoinedByString:@" "],

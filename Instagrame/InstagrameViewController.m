@@ -12,6 +12,7 @@
 #import "InstagrameContext.h"
 #import "ColorMacro.h"
 #import "User.h"
+#import "User+Addon.h"
 #import "Room.h"
 #import "Room+Addon.h"
 #import "Requester.h"
@@ -56,15 +57,27 @@
         [instagrameContext.requester loadRelevantRoomsForUser: instagrameContext.me completion:^(BOOL success, NSArray *rooms) {
 #pragma warning move syncronizing out of view controller (maybe a dataRetriever class?)
             NSLog(@"rooms:\n%@", rooms);
-            for (NSDictionary* room in rooms) {
-                Room* r = [instagrameContext.synchronizer syncRoom:[Room convertFromParseRoom:room]];
-                if (![instagrameContext.me.roomsOwned containsObject:r]) {
-                    [r addPlayersObject:instagrameContext.me];
-                }
+            NSArray* coreRooms = [instagrameContext.synchronizer syncRooms:[Room convertParseRooms:rooms]];
+            if (!coreRooms.count) {
+                return;
             }
-            UITableView *tv = (UITableView*) self.relevantGamesController.view;
-            [tv reloadData];
+            [self chainedInfoForRoom:coreRooms index:0 completion:nil];
         }];
+    }
+}
+
+- (void) chainedInfoForRoom:(NSArray*) rooms index: (int) index completion:(void(^)(BOOL))completion{
+    if (index < rooms.count) {
+        [instagrameContext.requester playersForRoom:rooms[index] completion:^(BOOL success, NSArray *players) {
+            if(success){
+                [instagrameContext.synchronizer syncPlayers:[User convertParseUsers:players] forRoom:rooms[index]];
+            }
+            [self chainedInfoForRoom:rooms index:index+1 completion:completion];
+        }];
+    }else{
+        if (completion) {
+            completion(YES);
+        }
     }
 }
 
