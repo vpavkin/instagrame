@@ -15,6 +15,7 @@
 
 @property (nonatomic, readonly) BOOL isSubscribed;
 @property (nonatomic, readonly) BOOL isVisited;
+@property (nonatomic, readonly) BOOL isVoted;
 
 + (NSDictionary*) convertFromParsePicture:(NSDictionary*) room;
 + (NSArray*) convertParsePictures:(NSArray*) pictures;

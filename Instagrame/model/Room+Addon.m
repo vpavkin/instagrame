@@ -18,6 +18,10 @@
     return [self.finishDate compare:[NSDate date]] == NSOrderedAscending;
 }
 
+-(BOOL) isVoted{
+    return [self.pictures filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"isVoted=YES"]].count;
+}
+
 -(RoomState) state{
     if ([self.startDate compare:[NSDate date]] == NSOrderedDescending) {
         return RoomStateNotStarted;

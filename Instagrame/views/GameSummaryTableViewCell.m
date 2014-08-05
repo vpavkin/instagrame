@@ -49,10 +49,10 @@
     [self.timer invalidate];
     if (self.isTimeRunningUp) {
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                         target:self
-                                       selector:@selector(updateCountdown:)
-                                       userInfo:nil
-                                        repeats:YES];
+                                                      target:self
+                                                    selector:@selector(updateCountdown:)
+                                                    userInfo:nil
+                                                     repeats:YES];
     }
 }
 
@@ -89,7 +89,7 @@
             break;
         case RoomStateVoting:
             self.stateImageView.image = [UIImage imageNamed:@"voting"];
-                        self.backgroundColor = Rgb2UIColor(0xff,0x95,0x00);
+            self.backgroundColor = Rgb2UIColor(0xff,0x95,0x00);
             break;
         case RoomStateFinished:
             self.stateImageView.image = [UIImage imageNamed:@"finished"];
@@ -100,7 +100,7 @@
 
 - (void) updatePictures{
     NSArray* pics = [self.room.pictures allObjects];
-    int max = MIN(pics.count, 6);
+    unsigned long max = MIN(pics.count, 6);
     for (int i = 0; i < max; i++) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
             Picture* pic = pics[i];

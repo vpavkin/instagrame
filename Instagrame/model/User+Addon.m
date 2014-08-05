@@ -28,34 +28,22 @@
 }
 
 -(UIColor*) karmaColor{
-    UIColor* baseColor;
-    if (self.karma.intValue < 0) {
-        baseColor = [UIColor redColor];
-    }else if(self.karma.intValue > 0){
-        baseColor = Rgb2UIColor(0x4c, 0xd9, 0x64);
-    }else
+    int v =self.karma.intValue;
+    if ( v < -100) {
+        return [UIColor colorWithRed:0.502 green:0.000 blue:0.000 alpha:1.000];
+    }else if(self.karma.intValue < -50){
+        return [UIColor colorWithRed:0.939 green:0.131 blue:0.150 alpha:1.000];
+    }else if(self.karma.intValue < 0){
+        return [UIColor colorWithRed:1.000 green:0.400 blue:0.400 alpha:1.000];
+    }else if(self.karma.intValue == 0){
         return [UIColor whiteColor];
-    
-    return [User changeBrightness:baseColor amount: (fabs(100-self.karma.intValue)/100.0)];
-}
-
-+ (UIColor*)changeBrightness:(UIColor*)color amount:(CGFloat)amount{
-    
-    CGFloat hue, saturation, brightness, alpha;
-    if ([color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha]) {
-        brightness += (amount-1.0);
-        brightness = MAX(MIN(brightness, 1.0), 0.0);
-        return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha];
+    }else if(self.karma.intValue < 50){
+        return [UIColor colorWithRed:0.441 green:0.837 blue:0.427 alpha:1.000];
+    }else if(self.karma.intValue < 100){
+        return [UIColor colorWithRed:0.175 green:0.694 blue:0.175 alpha:1.000];
     }
+    return [UIColor colorWithRed:0.119 green:0.536 blue:0.144 alpha:1.000];
     
-    CGFloat white;
-    if ([color getWhite:&white alpha:&alpha]) {
-        white += (amount-1.0);
-        white = MAX(MIN(white, 1.0), 0.0);
-        return [UIColor colorWithWhite:white alpha:alpha];
-    }
-    
-    return nil;
 }
 
 + (NSDictionary*) convertFromParseUser:(NSDictionary*) parseUser{

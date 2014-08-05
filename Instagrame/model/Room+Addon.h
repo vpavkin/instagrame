@@ -17,8 +17,9 @@ typedef NS_ENUM(NSInteger, RoomState) {
 
 @interface Room (Addon)
 
-@property(nonatomic, readonly, getter = isFinished) BOOL finished;
+@property(nonatomic, readonly) BOOL isFinished;
 @property(nonatomic, readonly) RoomState state;
+@property(nonatomic, readonly) BOOL isVoted;
 
 + (NSDictionary*) convertFromParseRoom:(NSDictionary*) room;
 + (NSArray*) convertParseRooms:(NSArray*) rooms;

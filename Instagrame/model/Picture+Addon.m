@@ -22,6 +22,10 @@
     return [self.subscribers containsObject:instagrameContext.me];
 }
 
+- (BOOL) isVoted{
+    return [self.voters containsObject:instagrameContext.me];
+}
+
 + (NSDictionary*) convertFromParsePicture:(NSDictionary*) parsePicture{
     NSMutableDictionary* picture = [parsePicture mutableCopy];
     
