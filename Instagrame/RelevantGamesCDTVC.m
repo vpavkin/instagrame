@@ -15,6 +15,7 @@
 #import "Room.h"
 #import "User.h"
 #import "User+Addon.h"
+#import "RoomCDTVC.h"
 
 @interface RelevantGamesCDTVC ()
 
@@ -49,9 +50,20 @@
     }
     
     Room *room = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
     cell.room = room;
     
     return cell;
+}
+
+
+#pragma mark navigation
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"selectRoom"]) {
+        RoomCDTVC *vc = (RoomCDTVC*)segue.destinationViewController;
+        GameSummaryTableViewCell* cell = sender;
+        vc.room = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:cell]];
+        NSLog(@"%@", vc.room);
+    }
 }
 @end

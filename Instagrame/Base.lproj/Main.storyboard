@@ -246,6 +246,36 @@
             </objects>
             <point key="canvasLocation" x="966" y="-446"/>
         </scene>
+        <!--RoomCDTVC-->
+        <scene sceneID="K8D-FX-oNs">
+            <objects>
+                <tableViewController id="Flc-9e-RNh" customClass="RoomCDTVC" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="320" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zmx-F5-ugG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PictureCell" id="9Zu-we-VgP" customClass="PictureTableViewCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="320"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Zu-we-VgP" id="t9z-0t-b0o">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="319"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Flc-9e-RNh" id="B4t-na-f8P"/>
+                            <outlet property="delegate" destination="Flc-9e-RNh" id="GBa-VW-Iw5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ExF-92-Eko"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ccD-Fy-DM5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2547" y="-446"/>
+        </scene>
         <!--Relevant GamesCDTVC-->
         <scene sceneID="1dM-Bl-jSv">
             <objects>
@@ -255,11 +285,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GameSummaryCell" id="DCC-f6-lHg" customClass="GameSummaryTableViewCell">
+                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GameSummaryCell" id="DCC-f6-lHg" customClass="GameSummaryTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="76"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DCC-f6-lHg" id="d2S-Ci-zkB">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="76"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="3" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="110" translatesAutoresizingMaskIntoConstraints="NO" id="lDj-HL-TuI">
@@ -299,7 +329,7 @@
                                                 </imageView>
                                             </subviews>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="06EE1919-A05C-4FB4-8589-9C81367188BE" translatesAutoresizingMaskIntoConstraints="NO" id="xiw-V7-obf">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="9549D2AF-77B7-4B86-A250-66E1BD37CC06" translatesAutoresizingMaskIntoConstraints="NO" id="xiw-V7-obf">
                                             <rect key="frame" x="140" y="34" width="32" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -331,6 +361,7 @@
                                     <outlet property="nameLabel" destination="lDj-HL-TuI" id="4oS-96-OKe"/>
                                     <outlet property="playersCountLabel" destination="Ifq-S5-O7e" id="iaZ-ej-leu"/>
                                     <outlet property="stateImageView" destination="0B6-RO-ZhK" id="9u6-JZ-Byh"/>
+                                    <segue destination="Flc-9e-RNh" kind="push" identifier="selectRoom" id="zSt-Pq-sjd"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -342,11 +373,11 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gcU-Au-Fpm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2491" y="-148"/>
+            <point key="canvasLocation" x="1988" y="-868"/>
         </scene>
     </scenes>
     <resources>
-        <image name="06EE1919-A05C-4FB4-8589-9C81367188BE" width="128" height="128">
+        <image name="9549D2AF-77B7-4B86-A250-66E1BD37CC06" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
