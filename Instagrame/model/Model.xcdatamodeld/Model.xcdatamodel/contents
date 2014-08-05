@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Picture" representedClassName="Picture" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -43,7 +44,7 @@
         <relationship name="roomsPlayed" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Room" inverseName="players" inverseEntity="Room" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Picture" positionX="-5510" positionY="-189" width="128" height="195"/>
+        <element name="Picture" positionX="-5510" positionY="-189" width="128" height="210"/>
         <element name="Room" positionX="-5690" positionY="-49" width="128" height="210"/>
         <element name="User" positionX="-5177" positionY="-18" width="128" height="268"/>
     </elements>

@@ -29,9 +29,9 @@
 		8448ED16198EBCD400C9D0C4 /* RelevantGamesCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448ED15198EBCD400C9D0C4 /* RelevantGamesCDTVC.m */; };
 		8448ED1C198ECDB300C9D0C4 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448ED1B198ECDB300C9D0C4 /* Room.m */; };
 		84571D611990D46A00BD15F0 /* Picture+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 84571D601990D46A00BD15F0 /* Picture+Addon.m */; };
-		84571D641990DE7C00BD15F0 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 84571D631990DE7C00BD15F0 /* Picture.m */; };
 		84571D671990F90900BD15F0 /* PictureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84571D661990F90900BD15F0 /* PictureTableViewCell.m */; };
 		84571D6A1990F95500BD15F0 /* RoomCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84571D691990F95500BD15F0 /* RoomCDTVC.m */; };
+		84571D6D19910FFE00BD15F0 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 84571D6C19910FFE00BD15F0 /* Picture.m */; };
 		845DECF6197FCC1200F9138F /* AuthorizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845DECF5197FCC1200F9138F /* AuthorizeViewController.m */; };
 		845DECF8197FD33A00F9138F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 845DECF7197FD33A00F9138F /* Podfile */; };
 		849D8A2C1987C3290081944F /* Authorizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D8A2B1987C3290081944F /* Authorizer.m */; };
@@ -88,12 +88,12 @@
 		8448ED1B198ECDB300C9D0C4 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
 		84571D5F1990D46A00BD15F0 /* Picture+Addon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Picture+Addon.h"; sourceTree = "<group>"; };
 		84571D601990D46A00BD15F0 /* Picture+Addon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Picture+Addon.m"; sourceTree = "<group>"; };
-		84571D621990DE7C00BD15F0 /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picture.h; sourceTree = "<group>"; };
-		84571D631990DE7C00BD15F0 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
 		84571D651990F90900BD15F0 /* PictureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureTableViewCell.h; sourceTree = "<group>"; };
 		84571D661990F90900BD15F0 /* PictureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureTableViewCell.m; sourceTree = "<group>"; };
 		84571D681990F95500BD15F0 /* RoomCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomCDTVC.h; sourceTree = "<group>"; };
 		84571D691990F95500BD15F0 /* RoomCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomCDTVC.m; sourceTree = "<group>"; };
+		84571D6B19910FFE00BD15F0 /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picture.h; sourceTree = "<group>"; };
+		84571D6C19910FFE00BD15F0 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
 		845DECEC197F914E00F9138F /* ColorMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorMacro.h; sourceTree = "<group>"; };
 		845DECF4197FCC1200F9138F /* AuthorizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizeViewController.h; sourceTree = "<group>"; };
 		845DECF5197FCC1200F9138F /* AuthorizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizeViewController.m; sourceTree = "<group>"; };
@@ -242,8 +242,8 @@
 		845DECF0197FC66F00F9138F /* model */ = {
 			isa = PBXGroup;
 			children = (
-				84571D621990DE7C00BD15F0 /* Picture.h */,
-				84571D631990DE7C00BD15F0 /* Picture.m */,
+				84571D6B19910FFE00BD15F0 /* Picture.h */,
+				84571D6C19910FFE00BD15F0 /* Picture.m */,
 				8448ED1A198ECDB300C9D0C4 /* Room.h */,
 				8448ED1B198ECDB300C9D0C4 /* Room.m */,
 				840BF4BC198976AE005A21B6 /* User.h */,
@@ -420,7 +420,6 @@
 				84571D6A1990F95500BD15F0 /* RoomCDTVC.m in Sources */,
 				845DECF6197FCC1200F9138F /* AuthorizeViewController.m in Sources */,
 				84ADBED419895C3100307EE2 /* User+Addon.m in Sources */,
-				84571D641990DE7C00BD15F0 /* Picture.m in Sources */,
 				840B359D197F01440050763B /* GameSummaryTableViewCell.m in Sources */,
 				840BF4BE198976AE005A21B6 /* User.m in Sources */,
 				8448ED10198EBC7400C9D0C4 /* CoreDataTableViewController.m in Sources */,
@@ -433,6 +432,7 @@
 				84BE0D8C197FEB7C00E72F88 /* InstagrameContext.m in Sources */,
 				840B3562197ED5640050763B /* main.m in Sources */,
 				84BE0D8F1980DA7900E72F88 /* Room+Addon.m in Sources */,
+				84571D6D19910FFE00BD15F0 /* Picture.m in Sources */,
 				84ADBEC819894E6600307EE2 /* Synchronizer.m in Sources */,
 				84571D671990F90900BD15F0 /* PictureTableViewCell.m in Sources */,
 				84EE456D19862E4100DDD6AB /* Model.xcdatamodeld in Sources */,

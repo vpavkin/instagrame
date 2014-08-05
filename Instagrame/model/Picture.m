@@ -18,6 +18,7 @@
 @dynamic objectId;
 @dynamic submitDate;
 @dynamic updatedAt;
+@dynamic comment;
 @dynamic author;
 @dynamic room;
 @dynamic subscribers;

@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * objectId;
 @property (nonatomic, retain) NSDate * submitDate;
 @property (nonatomic, retain) NSDate * updatedAt;
+@property (nonatomic, retain) NSString * comment;
 @property (nonatomic, retain) User *author;
 @property (nonatomic, retain) Room *room;
 @property (nonatomic, retain) NSSet *subscribers;
