@@ -59,7 +59,7 @@
 }
 
 - (NSString*) myPassword{
-    return  [FDKeychain itemForKey: EMAIL_KEY
+    return  [FDKeychain itemForKey: PASSWORD_KEY
                         forService: @"Instagrame"
                              error:NULL];
 }

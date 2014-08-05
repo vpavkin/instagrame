@@ -81,15 +81,19 @@
     switch (_room.state) {
         case RoomStateNotStarted:
             self.stateImageView.image = [UIImage imageNamed:@"not_started"];
+            self.backgroundColor = Rgb2UIColor(0x34,0xaa,0xdc);
             break;
         case RoomStateInPlay:
             self.stateImageView.image = [UIImage imageNamed:@"play"];
+            self.backgroundColor = Rgb2UIColor(0x4C,0xD9,0x64);
             break;
         case RoomStateVoting:
             self.stateImageView.image = [UIImage imageNamed:@"voting"];
+                        self.backgroundColor = Rgb2UIColor(0xff,0x95,0x00);
             break;
         case RoomStateFinished:
             self.stateImageView.image = [UIImage imageNamed:@"finished"];
+            self.backgroundColor = Rgb2UIColor(0x8e,0x8e, 0x93);
             break;
     }
 }

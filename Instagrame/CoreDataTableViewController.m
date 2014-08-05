@@ -123,7 +123,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
             
         case NSFetchedResultsChangeMove:

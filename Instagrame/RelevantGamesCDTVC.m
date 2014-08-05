@@ -24,7 +24,7 @@
 
 - (void) viewDidLoad{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
-    request.predicate = [NSPredicate predicateWithFormat:@"(owner = %@) OR (ANY players = %@)",instagrameContext.me,instagrameContext.me];
+    request.predicate = [NSPredicate predicateWithFormat:@"((owner = %@) OR (ANY players = %@)) AND finishDate > %@",instagrameContext.me,instagrameContext.me, [NSDate date]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"startDate"
                                                               ascending:NO]];
     request.fetchLimit = 3;
@@ -50,11 +50,6 @@
     
     Room *room = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    
-    NSArray *colors = @[ Rgb2UIColor(255,59,48),
-                         Rgb2UIColor(76,217,100),
-                         Rgb2UIColor(52,170,220)];
-    cell.backgroundColor = colors[indexPath.row % colors.count];
     cell.room = room;
     
     return cell;
