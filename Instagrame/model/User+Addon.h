@@ -11,7 +11,7 @@
 @interface User (Addon)
 
 @property (nonatomic,readonly) NSAttributedString* nameWithKarma;
-@property (nonatomic,readonly) NSString* karmaString;
+@property (nonatomic,readonly) NSAttributedString* karmaString;
 @property (nonatomic,readonly) UIColor* karmaColor;
 
 + (NSDictionary*) convertFromParseUser:(NSDictionary*) parseUser;

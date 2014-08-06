@@ -8,6 +8,8 @@
 
 #import "CoreDataTableViewController.h"
 
-@interface RelevantGamesCDTVC : CoreDataTableViewController
+@interface RelevantGamesCDTVC : UITableViewController
+
+-(void) update;
 
 @end

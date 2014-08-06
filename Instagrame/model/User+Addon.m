@@ -15,16 +15,20 @@
 -(NSAttributedString*) nameWithKarma{
     NSMutableAttributedString *result = [[NSMutableAttributedString alloc]initWithString:self.name
                                                                               attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    [result appendAttributedString: [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" (%@)",self.karmaString]
-                                                                  attributes:@{NSForegroundColorAttributeName:self.karmaColor}]];
+    [result appendAttributedString: [[NSAttributedString alloc] initWithString:@" ("
+                                                                    attributes:@{NSForegroundColorAttributeName:self.karmaColor}]];
+    [result appendAttributedString:self.karmaString];
+    [result appendAttributedString: [[NSAttributedString alloc] initWithString:@")"
+                                                                    attributes:@{NSForegroundColorAttributeName:self.karmaColor}]];
     return result;
 }
 
--(NSString*) karmaString{
-    if (self.karma.intValue > 0) {
-        return [NSString stringWithFormat:@"+%@", self.karma];
-    }
-    return self.karma.description;
+
+
+-(NSAttributedString*) karmaString{
+    return [[NSAttributedString alloc]initWithString:
+            self.karma.intValue > 0 ? [NSString stringWithFormat:@"+%@", self.karma] : self.karma.description
+                                          attributes:@{NSForegroundColorAttributeName:self.karmaColor}];
 }
 
 -(UIColor*) karmaColor{

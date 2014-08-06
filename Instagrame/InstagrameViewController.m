@@ -35,21 +35,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.userNameLabel.text = instagrameContext.me.name;
-    self.carmaLabel.text = [NSString stringWithFormat: @"%@", instagrameContext.me.karma];
+    self.userNameLabel.attributedText = instagrameContext.me.nameWithKarma;
+    self.carmaLabel.text = @"";
     self.avatar.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:instagrameContext.me.avatarURL]]];
     self.avatar.layer.cornerRadius = self.avatar.frame.size.width / 2;
     self.avatar.layer.borderWidth = 3.0f;
     self.avatar.layer.borderColor = [[UIColor whiteColor] CGColor];
+    
 }
 
-- (void) viewDidLayoutSubviews{
-    UITableView *tv = (UITableView*)self.relevantGamesController.view;
-    CGRect frame = tv.frame;
-    frame.size.height = tv.contentSize.height;
-    tv.frame = CGRectMake(frame.origin.x,frame.origin.y,frame.size.width,frame.size.width);
-    
-    self.noGamesPlaceholder.hidden = [tv visibleCells].count;
+- (void) viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationItem setHidesBackButton:YES];
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.opaque = NO;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -60,10 +59,17 @@
 #pragma warning move syncronizing out of view controller (maybe a dataRetriever class?)
             NSLog(@"rooms:\n%@", rooms);
             NSArray* coreRooms = [instagrameContext.synchronizer syncRooms:[Room convertParseRooms:rooms]];
+            self.noGamesPlaceholder.hidden = coreRooms.count;
             if (!coreRooms.count) {
                 return;
             }
-            [self chainedInfoForRoom:coreRooms index:0 completion:nil];
+            
+            [self chainedInfoForRoom:coreRooms
+                               index:0
+                          completion:^(BOOL success) {
+                              [self.relevantGamesController update];
+                              
+                          }];
         }];
     }
 }

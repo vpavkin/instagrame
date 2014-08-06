@@ -17,6 +17,10 @@
 
 @implementation RoomCDTVC
 
+-(void) viewWillAppear:(BOOL)animated{
+    [self navigationController].navigationBar.backItem.hidesBackButton = NO;
+}
+
 - (void) setRoom:(Room *)room{
     _room = room;
     [self update];
