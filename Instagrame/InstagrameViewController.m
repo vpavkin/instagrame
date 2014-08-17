@@ -54,48 +54,8 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     NSString * segueName = segue.identifier;
     if ([segueName isEqualToString: @"RelevantGamesES"]) {
-        self.relevantGamesController = (RelevantGamesCDTVC *) [segue destinationViewController];
-        [instagrameContext.requester loadRelevantRoomsForUser: instagrameContext.me completion:^(BOOL success, NSArray *rooms) {
-#pragma warning move syncronizing out of view controller (maybe a dataRetriever class?)
-            NSLog(@"rooms:\n%@", rooms);
-            NSArray* coreRooms = [instagrameContext.synchronizer syncRooms:[Room convertParseRooms:rooms]];
-            self.noGamesPlaceholder.hidden = coreRooms.count;
-            if (!coreRooms.count) {
-                return;
             }
-            
-            [self chainedInfoForRoom:coreRooms
-                               index:0
-                          completion:^(BOOL success) {
-                              [self.relevantGamesController update];
-                              
-                          }];
-        }];
-    }
 }
 
-- (void) chainedInfoForRoom:(NSArray*) rooms index: (int) index completion:(void(^)(BOOL))completion{
-    if (index < rooms.count) {
-        [instagrameContext.requester playersForRoom:rooms[index] completion:^(BOOL success, NSArray *players) {
-            if(success){
-                [instagrameContext.synchronizer syncPlayers:[User convertParseUsers:players] forRoom:rooms[index]];
-            }
-            [instagrameContext.requester picturesForRoom:rooms[index] completion:^(BOOL success, NSArray *pictures) {
-                if(success){
-                    [instagrameContext.synchronizer syncPictures:[Picture convertParsePictures:pictures] forRoom:rooms[index]];
-                }
-                [self chainedInfoForRoom:rooms index:index+1 completion:completion];
-            }];
-        }];
-    }else{
-        if (completion) {
-            completion(YES);
-        }
-    }
-}
-
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
 
 @end

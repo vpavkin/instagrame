@@ -8,16 +8,18 @@
 
 #import "GameSummaryTableViewCell.h"
 #import "Room.h"
+#import "User.h"
 #import "Room+Addon.h"
 #import "Picture.h"
 
 @interface GameSummaryTableViewCell ()
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIView *imagesContainer;
 @property (weak, nonatomic) IBOutlet UIImageView *stateImageView;
 @property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playersCountLabel;
+@property (strong, nonatomic) IBOutlet UILabel *ownerNameLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *myStatusBadge;
 
 @property (nonatomic, readonly) NSTimeInterval countdown;
 @property (nonatomic, readonly) BOOL isTimeRunningUp;
@@ -29,19 +31,17 @@
 - (void) setRoom:(Room *)room{
     _room = room;
     self.nameLabel.text = _room.task;
-    self.playersCountLabel.text = [NSString stringWithFormat:@"%lu", _room.players.count];
     [self updateState];
     [self updateCountdown];
-    [self updatePictures];
 }
 
 
 - (void) updateCountdown{
     NSTimeInterval countdown = self.countdown;
     if ((countdown / (60*60*24)) >= 1) {
-        self.countdownLabel.text = [NSString stringWithFormat:@"%d d.", (int)(countdown / (60*60*24))];
+        self.countdownLabel.text = [NSString stringWithFormat:@"%d days", (int)(countdown / (60*60*24))];
     }else if((countdown / (60*60)) >= 1){
-        self.countdownLabel.text = [NSString stringWithFormat:@"%d h.", (int)(countdown / (60*60))];
+        self.countdownLabel.text = [NSString stringWithFormat:@"%d hours", (int)(countdown / (60*60))];
     }else{
         self.countdownLabel.text = [NSString stringWithFormat:@"%02d:%d", (int)(countdown / 60) % 60, (int)countdown % 60];
     }
@@ -78,40 +78,29 @@
 }
 
 - (void) updateState{
+    self.backgroundColor = [UIColor clearColor];
+    self.ownerNameLabel.text = _room.owner.name;
     switch (_room.state) {
         case RoomStateNotStarted:
             self.stateImageView.image = [UIImage imageNamed:@"not_started"];
-            self.backgroundColor = Rgb2UIColor(0x34,0xaa,0xdc);
+//            self.backgroundColor = UIColorFromRGB(0x34aadc);
             break;
         case RoomStateInPlay:
             self.stateImageView.image = [UIImage imageNamed:@"play"];
-            self.backgroundColor = Rgb2UIColor(0x4C,0xD9,0x64);
+            self.playersCountLabel.text = [NSString stringWithFormat:@"%d/%@ players participated", _room.players.count, _room.playersLimit];
+//            self.backgroundColor = UIColorFromRGB(0x4CD964);
             break;
         case RoomStateVoting:
             self.stateImageView.image = [UIImage imageNamed:@"voting"];
-            self.backgroundColor = Rgb2UIColor(0xff,0x95,0x00);
+            self.playersCountLabel.text = [NSString stringWithFormat:@"%d/%@ players participated", _room.players.count, _room.playersLimit];
+//            self.backgroundColor = [UIColor colorWithRed:0.981 green:0.510 blue:0.048 alpha:0.300];
             break;
         case RoomStateFinished:
+            self.playersCountLabel.text = [NSString stringWithFormat:@"%d/%@ players participated", _room.players.count, _room.playersLimit];
             self.stateImageView.image = [UIImage imageNamed:@"finished"];
-            self.backgroundColor = Rgb2UIColor(0x8e,0x8e, 0x93);
+//            self.backgroundColor = UIColorFromRGB(0x8e8e93);
             break;
     }
 }
-
-- (void) updatePictures{
-    NSArray* pics = [self.room.pictures allObjects];
-    unsigned long max = MIN(pics.count, 6);
-    for (int i = 0; i < max; i++) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-            Picture* pic = pics[i];
-            UIImage* imgd = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:pic.photoURL]]];
-            dispatch_async(dispatch_get_main_queue(), ^(void) {
-                UIImageView *img = (UIImageView*)self.imagesContainer.subviews[i];
-                img.image= imgd;
-            });
-        });
-    }
-}
-
 
 @end

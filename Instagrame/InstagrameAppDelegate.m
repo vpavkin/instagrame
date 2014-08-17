@@ -13,8 +13,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self setBarItemsStyle];
     [self createDocument];
     return YES;
+}
+
+- (void) setBarItemsStyle{
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+     setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor],
+       NSFontAttributeName:[UIFont fontWithName:@"Avenir Light" size:18]
+       }
+     forState:UIControlStateNormal];
 }
 
 - (void) createDocument{

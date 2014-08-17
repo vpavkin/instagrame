@@ -8,6 +8,18 @@
 	<false/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>fonts/DaxlineProRegular.otf
+DaxlineProRegular.otf
+DaxlineProThin.otf</string>
+		<string>fonts/DaxlineProThin.otf
+DaxlineProRegular.otf
+DaxlineProThin.otf</string>
+		<string>DaxlineProBold.otf
+DaxlineProRegular.otf
+DaxlineProThin.otf</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
