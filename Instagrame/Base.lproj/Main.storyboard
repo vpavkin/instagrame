@@ -273,7 +273,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v2S-px-E2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2197" y="-305"/>
+            <point key="canvasLocation" x="1506" y="173"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oJN-YM-rA1">
@@ -299,11 +299,11 @@
             </objects>
             <point key="canvasLocation" x="966" y="-446"/>
         </scene>
-        <!--RoomCDTVC-->
+        <!--RoomCDTVC - Game-->
         <scene sceneID="K8D-FX-oNs">
             <objects>
                 <tableViewController id="Flc-9e-RNh" customClass="RoomCDTVC" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="320" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zmx-F5-ugG">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="320" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zmx-F5-ugG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -316,35 +316,34 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C94-9K-xdQ">
-                                            <rect key="frame" x="0.0" y="244" width="320" height="76"/>
+                                            <rect key="frame" x="0.0" y="233" width="320" height="87"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="217" translatesAutoresizingMaskIntoConstraints="NO" id="sXV-dd-sCy">
-                                                    <rect key="frame" x="13" y="31" width="217" height="35"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Шла Саша по шоссе и сосала сушку. Сушка была сушкой убийцей" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="236" translatesAutoresizingMaskIntoConstraints="NO" id="sXV-dd-sCy">
+                                                    <rect key="frame" x="5" y="52" width="236" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAQ-Qm-ZfW">
-                                                    <rect key="frame" x="13" y="8" width="217" height="30"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PUz-10-OcJ">
+                                                    <rect key="frame" x="5" y="5" width="45" height="45"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <state key="normal" title="Button">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dE6-HE-PLN">
-                                                    <rect key="frame" x="270" y="15" width="45" height="45"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Darth Vader" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSm-MS-lfb">
+                                                    <rect key="frame" x="55" y="8" width="191" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="thumb_normal">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="touchVoteButton:" destination="9Zu-we-VgP" eventType="touchUpInside" id="zBk-w1-HvQ"/>
-                                                    </connections>
-                                                </button>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uI4-QM-SPn">
+                                                    <rect key="frame" x="55" y="31" width="144" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                         </view>
@@ -374,26 +373,16 @@
                                                 <action selector="touchKarmaDownButton:" destination="9Zu-we-VgP" eventType="touchUpInside" id="L6E-to-PWC"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" alpha="0.49999999999999961" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPb-aq-yJQ">
-                                            <rect key="frame" x="275" y="0.0" width="45" height="45"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="star_normal">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="touchSubscribeButton" destination="9Zu-we-VgP" eventType="touchUpInside" id="dfJ-Wy-KxX"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="descriptionLabel" destination="sXV-dd-sCy" id="uf2-tg-H5Z"/>
                                     <outlet property="karmaDownButton" destination="qS7-Td-xmg" id="O7Y-We-oqb"/>
+                                    <outlet property="karmaLabel" destination="uI4-QM-SPn" id="2n4-UJ-rKW"/>
                                     <outlet property="karmaUpButton" destination="HkJ-Pt-UXX" id="ShD-is-Gsi"/>
                                     <outlet property="preloader" destination="MmH-Uq-jx2" id="v5h-Uu-JhO"/>
-                                    <outlet property="subscribeButton" destination="wPb-aq-yJQ" id="Xvy-fm-C2L"/>
-                                    <outlet property="userButton" destination="LAQ-Qm-ZfW" id="42K-ZC-htu"/>
-                                    <outlet property="voteButton" destination="dE6-HE-PLN" id="zqr-Ku-YrD"/>
+                                    <outlet property="userAvatar" destination="PUz-10-OcJ" id="wGJ-Zd-0Al"/>
+                                    <outlet property="userLabel" destination="tSm-MS-lfb" id="otc-vY-Sux"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -402,12 +391,11 @@
                             <outlet property="delegate" destination="Flc-9e-RNh" id="GBa-VW-Iw5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ExF-92-Eko"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationItem key="navigationItem" title="Game" id="ExF-92-Eko"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccD-Fy-DM5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2547" y="-446"/>
+            <point key="canvasLocation" x="2571" y="-446"/>
         </scene>
         <!--Relevant GamesCDTVC - Dashboard-->
         <scene sceneID="1dM-Bl-jSv">
@@ -493,7 +481,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gcU-Au-Fpm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1988" y="-868"/>
+            <point key="canvasLocation" x="2040" y="-446"/>
         </scene>
     </scenes>
     <resources>
@@ -508,7 +496,6 @@
         <image name="star" width="504" height="894"/>
         <image name="star_badge" width="24" height="24"/>
         <image name="star_normal" width="256" height="256"/>
-        <image name="thumb_normal" width="128" height="128"/>
         <image name="vkbutton" width="200" height="200"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -10,7 +10,7 @@
 
 @class Room;
 
-@interface RoomCDTVC : CoreDataTableViewController
+@interface RoomCDTVC : UITableViewController
 
 @property (strong,nonatomic) Room* room;
 

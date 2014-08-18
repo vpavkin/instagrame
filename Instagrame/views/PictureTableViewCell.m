@@ -18,13 +18,13 @@
 @interface PictureTableViewCell ()
 
 
-@property (strong, nonatomic) IBOutlet UIButton *userButton;
+@property (strong, nonatomic) IBOutlet UIImageView *userAvatar;
+@property (strong, nonatomic) IBOutlet UILabel *userLabel;
+@property (strong, nonatomic) IBOutlet UILabel *karmaLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *preloader;
 @property (strong, nonatomic) IBOutlet UIButton *karmaUpButton;
 @property (strong, nonatomic) IBOutlet UIButton *karmaDownButton;
-@property (strong, nonatomic) IBOutlet UIButton *subscribeButton;
-@property (strong, nonatomic) IBOutlet UIButton *voteButton;
 
 @end
 
@@ -34,67 +34,47 @@
     if(_picture == picture)
         return;
     _picture = picture;
-    self.descriptionLabel.text = _picture.comment;
-    [self updateVoteButton];
-    [self updateSubscribeButton];
-    [self updateUserButton];
+    self.backgroundColor = [UIColor clearColor];
+    UIImageView* imgview =[[UIImageView alloc] initWithFrame:self.bounds];
+    imgview.image = [UIImage imageNamed:@"picture_placeholder"];
+    self.backgroundView = imgview;
+    
+    [self updateLabels];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         
         UIImage* imgd = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_picture.photoURL]]];
         
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-            UIImageView* imgview =[[UIImageView alloc] initWithFrame:self.bounds];
-            imgview.image = imgd;
-            self.backgroundView = imgview;
+            if (imgd) {
+                UIImageView* imgview =[[UIImageView alloc] initWithFrame:self.bounds];
+                imgview.image = imgd;
+                self.backgroundView = imgview;
+            }
             self.preloader.hidden = YES;
             [self.preloader stopAnimating];
         });
     });
 }
 
-- (void) updateVoteButton{
-    self.voteButton.imageView.image = [UIImage imageNamed: (_picture.isVoted ? @"thumb_voted" : @"thumb_normal")];
-    self.voteButton.alpha = (_picture.isVoted ? 1 : 0.5);
-}
-
-- (void) updateSubscribeButton{
-    self.subscribeButton.imageView.image = [UIImage imageNamed: (_picture.isSubscribed ? @"star_subscribed" : @"star_normal")];
-    self.voteButton.alpha = (_picture.isVoted ? 1 : 0.5);
-}
-
-- (void) updateUserButton{
-    [self.userButton setAttributedTitle:_picture.author.nameWithKarma
-                               forState:UIControlStateNormal];
-}
-
-- (IBAction)touchVoteButton:(UIButton *)sender {
-    if (!_picture.isVoted && !_picture.room.isVoted) {
-        [_picture addVotersObject:instagrameContext.me];
-        [self updateVoteButton];
-    }else if (_picture.isVoted){
-        [_picture removeVotersObject:instagrameContext.me];
-        [self updateVoteButton];
-    }
-}
-
-- (IBAction)touchSubscribeButton {
-    if (!_picture.isSubscribed){
-        [_picture addSubscribersObject:instagrameContext.me];
-    }else{
-        [_picture removeSubscribersObject:instagrameContext.me];
-    }
-    [self updateSubscribeButton];
+- (void) updateLabels{
+    self.userAvatar.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: _picture.author.avatarURL]]];
+    self.userAvatar.layer.cornerRadius = self.userAvatar.frame.size.width / 2;
+    self.userAvatar.layer.borderWidth = 2.0f;
+    self.userAvatar.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.userAvatar.clipsToBounds = YES;
+    
+    self.descriptionLabel.text = _picture.comment;
+    self.userLabel.text = _picture.author.name;
+    self.karmaLabel.attributedText = _picture.author.karmaString;
 }
 
 - (IBAction)touchKarmaUpButton {
     _picture.author.karma = [NSNumber numberWithInt:[_picture.author.karma intValue] + 1];
-    [self updateUserButton];
 }
 
 - (IBAction)touchKarmaDownButton:(id)sender {
     _picture.author.karma = [NSNumber numberWithInt:[_picture.author.karma intValue] - 1];
-    [self updateUserButton];
 }
 
 @end

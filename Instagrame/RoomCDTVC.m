@@ -10,35 +10,81 @@
 #import "InstagrameContext.h"
 #import "PictureTableViewCell.h"
 #import "Picture.h"
+#import "Room.h"
 
 @interface RoomCDTVC ()
+
+@property (strong, nonatomic, readonly) UIView *bgView;
+@property (strong, nonatomic, readonly) UILabel *noGamesLabel;
+@property (strong, nonatomic) NSArray *pictures; //of Picture
 
 @end
 
 @implementation RoomCDTVC
 
--(void) viewWillAppear:(BOOL)animated{
-    [self navigationController].navigationBar.backItem.hidesBackButton = NO;
+#pragma mark setup
+
+-(void) viewDidLoad{
+    [self setupNavBar];
+    [self setupTableView];
 }
+
+- (void) viewWillAppear:(BOOL)animated{
+    [self.navigationItem setHidesBackButton:NO];
+}
+
+- (void) setupNavBar{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    UIBarButtonItem *chatItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"photo"]
+                                                                 style:UIBarButtonItemStylePlain
+                                                                                target:self
+                                                                                action:nil];
+    
+    UIBarButtonItem *submitPhotoItem =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"chat"]
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self
+                                                                     action:nil];
+    
+    NSArray *actionButtonItems = @[chatItem, submitPhotoItem];
+    self.navigationItem.rightBarButtonItems = actionButtonItems;
+}
+
+- (void) setupTableView{
+    self.tableView.backgroundView = self.bgView;
+    // Initialize the refresh control.
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor colorWithRed:0.000 green:0.251 blue:0.502 alpha:0.5];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    self.refreshControl.opaque = NO;
+    self.refreshControl.layer.zPosition = self.tableView.backgroundView.layer.zPosition + 1;
+}
+
+#pragma mark data
 
 - (void) setRoom:(Room *)room{
     _room = room;
     [self update];
 }
 
+- (void) refresh{
+#pragma warning implement
+}
+
 -(void) update{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Picture"];
-    request.predicate = [NSPredicate predicateWithFormat:@"room = %@", _room];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"submitDate"
-                                                              ascending:NO]];
-    
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                        managedObjectContext:instagrameContext.document.managedObjectContext
-                                                                          sectionNameKeyPath:nil
-                                                                                   cacheName:nil];
+    self.pictures = [[self.room.pictures allObjects] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"submitDate"
+                                                                                                                ascending:NO]]];
+    [self.tableView reloadData];
 }
 
 #pragma mark UITableView
+
+- (int) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.pictures.count;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -50,10 +96,40 @@
         cell = [[PictureTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    Picture *pic = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Picture *pic = self.pictures[indexPath.row];
     cell.picture = pic;
     
     return cell;
 }
+
+#pragma mark properties
+
+@synthesize bgView = _bgView;
+@synthesize noGamesLabel = _noGamesLabel;
+
+- (UIView*) bgView{
+    if (!_bgView) {
+        _bgView = [[UIView alloc] init];
+        UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pile-of-photographs"]];
+        [tempImageView setFrame:self.tableView.frame];
+        tempImageView.contentMode = UIViewContentModeScaleAspectFill;
+        [_bgView addSubview:tempImageView];
+        [_bgView addSubview:self.noGamesLabel];
+    }
+    return _bgView;
+}
+
+- (UIView*) noGamesLabel{
+    if (!_noGamesLabel) {
+        _noGamesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.tableView.bounds.size.width-20, self.tableView.bounds.size.height-20)];
+        _noGamesLabel.textColor = [UIColor whiteColor];
+        _noGamesLabel.numberOfLines = 0;
+        _noGamesLabel.textAlignment = NSTextAlignmentCenter;
+        _noGamesLabel.font = [UIFont fontWithName:@"AvenirNext-UltraLight" size:32];
+        _noGamesLabel.text = @"";
+    }
+    return _noGamesLabel;
+}
+
 
 @end
