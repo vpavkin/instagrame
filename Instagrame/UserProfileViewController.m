@@ -9,11 +9,13 @@
 #import "UserProfileViewController.h"
 #import "InstagrameContext.h"
 #import "User.h"
+#import "User+Addon.h"
 
 @interface UserProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *statsTextView;
+@property (strong, nonatomic) IBOutlet UILabel *ratingLabel;
 
 @end
 
@@ -47,6 +49,7 @@
 - (void) setupUserInfo{
     self.nameLabel.text = instagrameContext.me.name;
     self.statsTextView.font = [UIFont fontWithName:@"AvenirNextCyr-Light" size:14];
+    self.ratingLabel.attributedText = instagrameContext.me.karmaString;
 }
 
 @end

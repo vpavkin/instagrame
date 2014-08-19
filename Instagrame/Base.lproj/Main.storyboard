@@ -209,7 +209,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+24" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="202" translatesAutoresizingMaskIntoConstraints="NO" id="ySF-1l-T6N">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+24" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySF-1l-T6N">
                                 <rect key="frame" x="98" y="65" width="202" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
@@ -230,6 +230,51 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progress="0.69999999999999996" progressImage="arrow_up" trackImage="like" translatesAutoresizingMaskIntoConstraints="NO" id="DoM-FU-DN2">
+                                <rect key="frame" x="70" y="201" width="230" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="w5k-6N-HvG"/>
+                                </constraints>
+                                <color key="progressTintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="trackTintColor" red="0.0" green="0.25098039215686274" blue="0.50196078431372548" alpha="0.5" colorSpace="calibratedRGB"/>
+                            </progressView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="energy" translatesAutoresizingMaskIntoConstraints="NO" id="I6r-io-I5J">
+                                <rect key="frame" x="20" y="196" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12/15" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3Z-rH-0MF">
+                                <rect key="frame" x="70" y="203" width="230" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="coin" translatesAutoresizingMaskIntoConstraints="NO" id="fH1-Dl-5Qv">
+                                <rect key="frame" x="20" y="244" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYw-WQ-mSc">
+                                <rect key="frame" x="68" y="250" width="74" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="28"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBZ-CB-k8g">
+                                <rect key="frame" x="240" y="250" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="coin_plus">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18B-nY-iFS">
+                                <rect key="frame" x="98" y="244" width="81" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="convert_arrow">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -240,6 +285,7 @@
                     <connections>
                         <outlet property="avatar" destination="LW8-Pl-Mp6" id="Fcu-7V-dDH"/>
                         <outlet property="nameLabel" destination="922-82-1pv" id="2Ec-Th-CMF"/>
+                        <outlet property="ratingLabel" destination="ySF-1l-T6N" id="2nK-rn-gdl"/>
                         <outlet property="statsTextView" destination="xtY-ov-8MA" id="02D-lf-sS9"/>
                     </connections>
                 </viewController>
@@ -325,33 +371,25 @@
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </activityIndicatorView>
-                                        <button opaque="NO" alpha="0.49999999999999961" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HkJ-Pt-UXX">
-                                            <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                        <button opaque="NO" alpha="0.49999999999999961" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGb-mw-b5h">
+                                            <rect key="frame" x="265" y="5" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="arrow_up">
+                                            <state key="normal" image="like">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <connections>
-                                                <action selector="touchKarmaUpButton" destination="9Zu-we-VgP" eventType="touchUpInside" id="78e-NH-sJP"/>
-                                            </connections>
                                         </button>
-                                        <button opaque="NO" alpha="0.49999999999999961" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qS7-Td-xmg">
-                                            <rect key="frame" x="39" y="0.0" width="45" height="45"/>
+                                        <button opaque="NO" alpha="0.49999999999999961" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSG-bZ-Aeb">
+                                            <rect key="frame" x="0.0" y="5" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="arrow_down">
+                                            <state key="normal" image="hate">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <connections>
-                                                <action selector="touchKarmaDownButton:" destination="9Zu-we-VgP" eventType="touchUpInside" id="L6E-to-PWC"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="descriptionLabel" destination="sXV-dd-sCy" id="uf2-tg-H5Z"/>
-                                    <outlet property="karmaDownButton" destination="qS7-Td-xmg" id="O7Y-We-oqb"/>
                                     <outlet property="karmaLabel" destination="uI4-QM-SPn" id="2n4-UJ-rKW"/>
-                                    <outlet property="karmaUpButton" destination="HkJ-Pt-UXX" id="ShD-is-Gsi"/>
                                     <outlet property="preloader" destination="MmH-Uq-jx2" id="v5h-Uu-JhO"/>
                                     <outlet property="userAvatar" destination="PUz-10-OcJ" id="wGJ-Zd-0Al"/>
                                     <outlet property="userLabel" destination="tSm-MS-lfb" id="otc-vY-Sux"/>
@@ -460,11 +498,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow_down" width="128" height="128"/>
         <image name="arrow_up" width="256" height="256"/>
+        <image name="coin" width="100" height="100"/>
+        <image name="coin_plus" width="100" height="100"/>
+        <image name="convert_arrow" width="100" height="76"/>
         <image name="email" width="42" height="32"/>
+        <image name="energy" width="100" height="100"/>
         <image name="fbbutton" width="200" height="200"/>
         <image name="finished" width="128" height="128"/>
+        <image name="hate" width="100" height="100"/>
+        <image name="like" width="100" height="100"/>
         <image name="lock" width="36" height="42"/>
         <image name="pile-of-photographs" width="504" height="894"/>
         <image name="sampleuser" width="150" height="150"/>
