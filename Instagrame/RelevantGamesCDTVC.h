@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 instagrame. All rights reserved.
 //
 
-#import "CoreDataTableViewController.h"
-
 @interface RelevantGamesCDTVC : UITableViewController
 
 -(void) update;

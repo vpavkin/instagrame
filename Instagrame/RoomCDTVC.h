@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 instagrame. All rights reserved.
 //
 
-#import "CoreDataTableViewController.h"
-
 @class Room;
 
 @interface RoomCDTVC : UITableViewController

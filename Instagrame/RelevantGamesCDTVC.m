@@ -87,7 +87,7 @@
     //    [self performSegueWithIdentifier:@"browseGames" sender:self];
 }
 - (IBAction)touchUserProfileBarButton:(id)sender {
-    //    [self performSegueWithIdentifier:@"userProfile" sender:self];
+    [self performSegueWithIdentifier:@"userProfile" sender:self];
 }
 
 #pragma mark data

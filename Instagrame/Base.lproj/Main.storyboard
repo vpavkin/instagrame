@@ -182,98 +182,70 @@
             </objects>
             <point key="canvasLocation" x="1506" y="-446"/>
         </scene>
-        <!--Instagrame View Controller-->
+        <!--User Profile View Controller - User Profile-->
         <scene sceneID="Lfc-iU-Vdh">
             <objects>
-                <viewController id="PKH-af-7CO" customClass="InstagrameViewController" sceneMemberID="viewController">
+                <viewController id="PKH-af-7CO" customClass="UserProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RFF-jj-kqF"/>
                         <viewControllerLayoutGuide type="bottom" id="Kos-Mt-TvD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FPE-64-eEW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sampleuser" translatesAutoresizingMaskIntoConstraints="NO" id="LW8-Pl-Mp6">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pile-of-photographs" translatesAutoresizingMaskIntoConstraints="NO" id="RdM-fz-Nle">
+                                <rect key="frame" x="0.0" y="-32" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sampleuser" translatesAutoresizingMaskIntoConstraints="NO" id="LW8-Pl-Mp6">
                                 <rect key="frame" x="20" y="28" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="fTM-hw-pqW"/>
-                                    <constraint firstAttribute="width" constant="70" id="lHl-Qp-tkc"/>
-                                </constraints>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Johnny Smith" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="922-82-1pv">
-                                <rect key="frame" x="98" y="51" width="160" height="24"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Johnny Smith" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="202" translatesAutoresizingMaskIntoConstraints="NO" id="922-82-1pv">
+                                <rect key="frame" x="98" y="39" width="202" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rl-KI-ajH">
-                                <rect key="frame" x="270" y="28" width="30" height="30"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+24" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="202" translatesAutoresizingMaskIntoConstraints="NO" id="ySF-1l-T6N">
+                                <rect key="frame" x="98" y="65" width="202" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="WLq-HT-Z5m"/>
-                                    <constraint firstAttribute="height" constant="30" id="hh4-2p-fOV"/>
-                                </constraints>
-                                <state key="normal" image="star_normal" backgroundImage="star">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9WE-YX-B6D">
-                                <rect key="frame" x="266" y="292" width="39" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="redraw" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="396-yD-Laz">
-                                <rect key="frame" x="20" y="392" width="280" height="30"/>
+                            <textView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtY-ov-8MA">
+                                <rect key="frame" x="20" y="106" width="236" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.25098040699958801" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Create New Game">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="redraw" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CiP-C7-49H">
-                                <rect key="frame" x="20" y="430" width="280" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.25098040699958801" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Popular games">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WUN-jJ-DIB">
-                                <rect key="frame" x="0.0" y="106" width="320" height="240"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </containerView>
+                                <attributedString key="attributedText">
+                                    <fragment content="1423-й в общем топе. 13-й в топе создателей. Выиграно 12 игр из 124. Создано 24 игры.">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirNext-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="922-82-1pv" firstAttribute="centerY" secondItem="LW8-Pl-Mp6" secondAttribute="centerY" constant="-0.5" id="202-Xb-O9l"/>
-                            <constraint firstItem="922-82-1pv" firstAttribute="leading" secondItem="LW8-Pl-Mp6" secondAttribute="trailing" constant="8" symbolic="YES" id="cnw-kc-RJa"/>
-                            <constraint firstItem="LW8-Pl-Mp6" firstAttribute="top" secondItem="RFF-jj-kqF" secondAttribute="bottom" constant="20" symbolic="YES" id="jLC-nj-3fR"/>
-                            <constraint firstItem="LW8-Pl-Mp6" firstAttribute="leading" secondItem="FPE-64-eEW" secondAttribute="leading" constant="20" symbolic="YES" id="oQG-UA-Y0U"/>
-                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="Ulg-xu-xYg">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="QIv-qe-bMg">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="User Profile" id="Ulg-xu-xYg">
+                        <barButtonItem key="rightBarButtonItem" title="Log out" id="U2F-yf-EPo"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="avatar" destination="LW8-Pl-Mp6" id="siw-IP-qFG"/>
-                        <outlet property="carmaLabel" destination="9WE-YX-B6D" id="sHd-m0-KcI"/>
-                        <outlet property="userNameLabel" destination="922-82-1pv" id="yAQ-CG-v3b"/>
+                        <outlet property="avatar" destination="LW8-Pl-Mp6" id="Fcu-7V-dDH"/>
+                        <outlet property="nameLabel" destination="922-82-1pv" id="2Ec-Th-CMF"/>
+                        <outlet property="statsTextView" destination="xtY-ov-8MA" id="02D-lf-sS9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v2S-px-E2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1506" y="173"/>
+            <point key="canvasLocation" x="2040" y="210"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oJN-YM-rA1">
@@ -478,6 +450,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="320" height="240"/>
+                    <connections>
+                        <segue destination="PKH-af-7CO" kind="push" identifier="userProfile" id="M5D-y8-dGz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gcU-Au-Fpm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -493,9 +468,7 @@
         <image name="lock" width="36" height="42"/>
         <image name="pile-of-photographs" width="504" height="894"/>
         <image name="sampleuser" width="150" height="150"/>
-        <image name="star" width="504" height="894"/>
         <image name="star_badge" width="24" height="24"/>
-        <image name="star_normal" width="256" height="256"/>
         <image name="vkbutton" width="200" height="200"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
