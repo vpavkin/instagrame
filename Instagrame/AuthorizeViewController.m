@@ -130,10 +130,6 @@
 {
     [super viewDidLoad];
  
-//    [self.loginButton sizeToFit];
-//    self.loginButton.imageEdgeInsets = UIEdgeInsetsMake(0, -150, 0, 0);
-//    self.loginButton.titleEdgeInsets = UIEdgeInsetsMake(0, -20, 0 ,0);
-    
     if (instagrameContext.document) {
         [self preAuthorize];
     }else{
