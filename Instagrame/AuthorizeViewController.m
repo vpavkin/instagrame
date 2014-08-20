@@ -69,14 +69,12 @@
     [self.view endEditing:YES];
 }
 
-- (void)keyboardWillShow:(NSNotification*)aNotification
-{
+- (void)keyboardWillShow:(NSNotification*)aNotification{
     NSDictionary* info = [aNotification userInfo];
     self.keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 }
 
-- (void)keyboardWillHide:(NSNotification*)aNotification
-{
+- (void)keyboardWillHide:(NSNotification*)aNotification{
     [self scrollKeyboardWithDelta:0];
 }
 

@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "players.png"
+      "filename" : "clock.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "players_2x.png"
+      "filename" : "clock_2x.png"
     }
   ],
   "info" : {

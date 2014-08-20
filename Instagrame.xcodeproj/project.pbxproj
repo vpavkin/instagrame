@@ -41,6 +41,7 @@
 		84ADBED419895C3100307EE2 /* User+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ADBED319895C3100307EE2 /* User+Addon.m */; };
 		84BE0D8C197FEB7C00E72F88 /* InstagrameContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE0D8B197FEB7C00E72F88 /* InstagrameContext.m */; };
 		84BE0D8F1980DA7900E72F88 /* Room+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE0D8E1980DA7900E72F88 /* Room+Addon.m */; };
+		84DFC29419A487C200F498E5 /* CreateGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFC29319A487C200F498E5 /* CreateGameViewController.m */; };
 		84EE456D19862E4100DDD6AB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84EE456B19862E4100DDD6AB /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +112,8 @@
 		84BE0D8B197FEB7C00E72F88 /* InstagrameContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagrameContext.m; sourceTree = "<group>"; };
 		84BE0D8D1980DA7900E72F88 /* Room+Addon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Room+Addon.h"; sourceTree = "<group>"; };
 		84BE0D8E1980DA7900E72F88 /* Room+Addon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Room+Addon.m"; sourceTree = "<group>"; };
+		84DFC29219A487C200F498E5 /* CreateGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGameViewController.h; sourceTree = "<group>"; };
+		84DFC29319A487C200F498E5 /* CreateGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGameViewController.m; sourceTree = "<group>"; };
 		84EE456C19862E4100DDD6AB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		E2064E166E894BC781C75F58 /* libPods-Instagrame.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Instagrame.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -182,6 +185,8 @@
 				845DECF0197FC66F00F9138F /* model */,
 				840B359A197F01210050763B /* views */,
 				840B3567197ED5640050763B /* Main.storyboard */,
+				84DFC29219A487C200F498E5 /* CreateGameViewController.h */,
+				84DFC29319A487C200F498E5 /* CreateGameViewController.m */,
 				840B3564197ED5640050763B /* InstagrameAppDelegate.h */,
 				840B3565197ED5640050763B /* InstagrameAppDelegate.m */,
 				845DECF4197FCC1200F9138F /* AuthorizeViewController.h */,
@@ -440,6 +445,7 @@
 				849D8A2F1987C9BE0081944F /* Requester.m in Sources */,
 				8448ED13198EBC7E00C9D0C4 /* FDKeychain.m in Sources */,
 				84BE0D8C197FEB7C00E72F88 /* InstagrameContext.m in Sources */,
+				84DFC29419A487C200F498E5 /* CreateGameViewController.m in Sources */,
 				840B3562197ED5640050763B /* main.m in Sources */,
 				84BE0D8F1980DA7900E72F88 /* Room+Addon.m in Sources */,
 				84571D6D19910FFE00BD15F0 /* Picture.m in Sources */,

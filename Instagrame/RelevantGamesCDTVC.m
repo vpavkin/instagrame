@@ -81,7 +81,7 @@
 #pragma mark ui listeners
 
 - (IBAction)touchNewGameBarButton:(id)sender {
-    //    [self performSegueWithIdentifier:@"createGame" sender:self];
+    [self performSegueWithIdentifier:@"createGame" sender:self];
 }
 - (IBAction)touchBrowseBarButton:(id)sender {
     //    [self performSegueWithIdentifier:@"browseGames" sender:self];
