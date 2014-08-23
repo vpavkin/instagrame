@@ -12,6 +12,7 @@
 #import "Picture.h"
 #import "Room.h"
 #import "GameChatViewController.h"
+#import "GameSummaryTableViewCell.h"
 
 @interface RoomCDTVC ()
 
@@ -22,6 +23,10 @@
 @end
 
 @implementation RoomCDTVC
+
+#pragma warning think of footer cell background (maybe nav bar should not be transparent either?)
+#pragma refresh control must disappear
+#pragma async avatars
 
 #pragma mark setup
 
@@ -114,6 +119,27 @@
     Picture *pic = self.pictures[indexPath.row];
     cell.picture = pic;
     
+    return cell;
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 96.0;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    // 1. Dequeue the custom header cell
+    GameSummaryTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"GameSummaryCell"];
+    
+    if (!cell) {
+        cell = [[GameSummaryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GameSummaryCell"];
+    }
+    
+    // 2. Set the various properties
+    cell.room = self.room;
+    cell.backgroundColor = [UIColor blackColor];
+    
+    // 3. And return
     return cell;
 }
 
