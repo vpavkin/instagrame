@@ -28,7 +28,6 @@
     [self setupNavBar];
     [self.tastTextView sizeToFit]; //added
     [self.tastTextView layoutIfNeeded]; //added
-    
 }
 
 - (void) setupNavBar{

@@ -31,7 +31,6 @@
 
 - (void) setupNavBar{
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationItem setHidesBackButton:YES];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];

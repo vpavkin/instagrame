@@ -180,7 +180,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1506" y="-446"/>
+            <point key="canvasLocation" x="1412" y="-446"/>
         </scene>
         <!--User Profile View Controller - User Profile-->
         <scene sceneID="Lfc-iU-Vdh">
@@ -341,7 +341,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v2S-px-E2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1506" y="205"/>
+            <point key="canvasLocation" x="1412" y="205"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oJN-YM-rA1">
@@ -452,10 +452,101 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Game" id="ExF-92-Eko"/>
+                    <connections>
+                        <segue destination="853-uE-A48" kind="push" identifier="gameChat" id="gkn-uG-LUN"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccD-Fy-DM5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2571" y="-446"/>
+            <point key="canvasLocation" x="2321" y="-446"/>
+        </scene>
+        <!--Game Chat View Controller - Game chat-->
+        <scene sceneID="Lud-Bp-h0x">
+            <objects>
+                <viewController id="853-uE-A48" customClass="GameChatViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zcc-Rz-ueo"/>
+                        <viewControllerLayoutGuide type="bottom" id="RHU-Ox-5lX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kDH-R7-lkC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pile-of-photographs" translatesAutoresizingMaskIntoConstraints="NO" id="JAl-vq-IV5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="liE-Ft-ppz">
+                                <rect key="frame" x="0.0" y="63" width="320" height="354"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="paul_dike">
+                                        <attributes>
+                                            <color key="NSColor" red="0.99215692280000001" green="0.58431375029999999" blue="0.02745098248" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="14" name="AvenirNext-Regular"/>
+                                            <font key="NSOriginalFont" size="14" name="AvenirNext-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=": Привет! Как вас зовут? Darth Vader: Я твой отец!">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="14" name="AvenirNext-Regular"/>
+                                            <font key="NSOriginalFont" size="14" name="AvenirNext-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Привет, меня зовут Вася!" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wQl-9d-TJz">
+                                <rect key="frame" x="20" y="430" width="226" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textDidBeginEditing:" destination="853-uE-A48" eventType="editingDidBegin" id="mv1-xv-My6"/>
+                                    <action selector="textFieldDidEndOnExit:" destination="853-uE-A48" eventType="editingDidEndOnExit" id="XCg-xx-7Tr"/>
+                                </connections>
+                            </textField>
+                            <view opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V6X-eZ-AWn">
+                                <rect key="frame" x="20" y="458" width="226" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UgB-0N-K8Q">
+                                <rect key="frame" x="264" y="430" width="36" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendButtonTouch:" destination="853-uE-A48" eventType="touchUpInside" id="KvL-J8-e07"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jcg-oW-Se6" appends="YES" id="flQ-zE-fB7"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="Game chat" id="rKx-AH-7cc"/>
+                    <connections>
+                        <outlet property="messageTextField" destination="wQl-9d-TJz" id="KFH-qU-wkG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PgX-5C-Xcc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="jcg-oW-Se6">
+                    <connections>
+                        <action selector="tap:" destination="853-uE-A48" id="zgS-0a-3nk"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2759" y="-446"/>
         </scene>
         <!--Create Game View Controller - Create Game-->
         <scene sceneID="X5e-eZ-QWq">
@@ -623,7 +714,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2571" y="205"/>
+            <point key="canvasLocation" x="2321" y="205"/>
         </scene>
         <!--Relevant GamesCDTVC - Dashboard-->
         <scene sceneID="1dM-Bl-jSv">
@@ -713,7 +804,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gcU-Au-Fpm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2048" y="-446"/>
+            <point key="canvasLocation" x="1866" y="-446"/>
         </scene>
     </scenes>
     <resources>

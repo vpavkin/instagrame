@@ -37,6 +37,7 @@
 		845DECF8197FD33A00F9138F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 845DECF7197FD33A00F9138F /* Podfile */; };
 		849D8A2C1987C3290081944F /* Authorizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D8A2B1987C3290081944F /* Authorizer.m */; };
 		849D8A2F1987C9BE0081944F /* Requester.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D8A2E1987C9BE0081944F /* Requester.m */; };
+		849E051719A91F30004A2AAF /* GameChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849E051619A91F30004A2AAF /* GameChatViewController.m */; };
 		84ADBEC819894E6600307EE2 /* Synchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ADBEC719894E6600307EE2 /* Synchronizer.m */; };
 		84ADBED419895C3100307EE2 /* User+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ADBED319895C3100307EE2 /* User+Addon.m */; };
 		84BE0D8C197FEB7C00E72F88 /* InstagrameContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE0D8B197FEB7C00E72F88 /* InstagrameContext.m */; };
@@ -104,6 +105,8 @@
 		849D8A2B1987C3290081944F /* Authorizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Authorizer.m; sourceTree = "<group>"; };
 		849D8A2D1987C9BE0081944F /* Requester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Requester.h; sourceTree = "<group>"; };
 		849D8A2E1987C9BE0081944F /* Requester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Requester.m; sourceTree = "<group>"; };
+		849E051519A91F30004A2AAF /* GameChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameChatViewController.h; sourceTree = "<group>"; };
+		849E051619A91F30004A2AAF /* GameChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameChatViewController.m; sourceTree = "<group>"; };
 		84ADBEC619894E6600307EE2 /* Synchronizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Synchronizer.h; sourceTree = "<group>"; };
 		84ADBEC719894E6600307EE2 /* Synchronizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Synchronizer.m; sourceTree = "<group>"; };
 		84ADBED219895C3100307EE2 /* User+Addon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Addon.h"; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 		840B355B197ED5640050763B /* Instagrame */ = {
 			isa = PBXGroup;
 			children = (
+				849E051519A91F30004A2AAF /* GameChatViewController.h */,
+				849E051619A91F30004A2AAF /* GameChatViewController.m */,
 				849D8A231987B5080081944F /* util */,
 				84BE0D931982313600E72F88 /* data */,
 				845DECF0197FC66F00F9138F /* model */,
@@ -441,6 +446,7 @@
 				843F28BF19A3C43000D7412D /* UserProfileViewController.m in Sources */,
 				8448ED16198EBCD400C9D0C4 /* RelevantGamesCDTVC.m in Sources */,
 				84571D611990D46A00BD15F0 /* Picture+Addon.m in Sources */,
+				849E051719A91F30004A2AAF /* GameChatViewController.m in Sources */,
 				849D8A2C1987C3290081944F /* Authorizer.m in Sources */,
 				849D8A2F1987C9BE0081944F /* Requester.m in Sources */,
 				8448ED13198EBC7E00C9D0C4 /* FDKeychain.m in Sources */,

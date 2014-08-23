@@ -11,6 +11,7 @@
 #import "PictureTableViewCell.h"
 #import "Picture.h"
 #import "Room.h"
+#import "GameChatViewController.h"
 
 @interface RoomCDTVC ()
 
@@ -39,17 +40,17 @@
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
-    UIBarButtonItem *chatItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"photo"]
+    UIBarButtonItem *submitPhotoItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"photo"]
                                                                  style:UIBarButtonItemStylePlain
                                                                                 target:self
                                                                                 action:nil];
     
-    UIBarButtonItem *submitPhotoItem =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"chat"]
+    UIBarButtonItem *chatItem =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"chat"]
                                                                       style:UIBarButtonItemStylePlain
                                                                      target:self
-                                                                     action:nil];
+                                                                     action:@selector(openChat)];
     
-    NSArray *actionButtonItems = @[chatItem, submitPhotoItem];
+    NSArray *actionButtonItems = @[submitPhotoItem, chatItem];
     self.navigationItem.rightBarButtonItems = actionButtonItems;
 }
 
@@ -61,6 +62,20 @@
     self.refreshControl.tintColor = [UIColor whiteColor];
     self.refreshControl.opaque = NO;
     self.refreshControl.layer.zPosition = self.tableView.backgroundView.layer.zPosition + 1;
+}
+
+#pragma mark navigation
+- (void) openChat{
+    [self performSegueWithIdentifier:@"gameChat" sender:self];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"gameChat"]) {
+        if ([segue.destinationViewController isKindOfClass:[GameChatViewController class]]) {
+            GameChatViewController* dest = (GameChatViewController*) segue.destinationViewController;
+            dest.room = self.room;
+        }
+    }
 }
 
 #pragma mark data
