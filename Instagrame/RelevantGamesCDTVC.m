@@ -33,16 +33,21 @@
 - (void) viewDidLoad{
     [self setupNavBar];
     [self setupTableView];
-    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y - self.refreshControl.frame.size.height + 15) animated:YES];
-    [self.refreshControl beginRefreshing];
     [self loadRelevantRooms];
+    [self.searchDisplayController.searchResultsTableView registerClass:[GameSummaryTableViewCell class] forCellReuseIdentifier:@"GameSummaryCell"];
+    self.searchDisplayController.searchResultsTableView.backgroundView = nil;
+    self.searchDisplayController.searchResultsTableView.backgroundColor = [UIColor clearColor];
+    [self hideSearchBar];
+}
+
+- (void) viewWillAppear:(BOOL)animated{
 }
 
 - (void) setupNavBar{
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationItem setHidesBackButton:YES];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                             forBarMetrics:UIBarMetricsDefault];
+                                                  forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
     UIBarButtonItem *browseItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
@@ -57,6 +62,7 @@
     NSArray *actionButtonItems = @[browseItem, userProfileItem];
     self.navigationItem.leftBarButtonItems = actionButtonItems;
 }
+
 - (void) setupTableView{
     self.tableView.backgroundView = self.bgView;
     // Initialize the refresh control.
@@ -76,18 +82,22 @@
     
     self.refreshControl.layer.zPosition = self.tableView.backgroundView.layer.zPosition + 1;
     
+    [self.refreshControl setNeedsLayout];
 }
 
-#pragma mark ui listeners
-
-- (IBAction)touchNewGameBarButton:(id)sender {
-    [self performSegueWithIdentifier:@"createGame" sender:self];
+#pragma manage UI
+- (void) hideSearchBar{
+    self.searchDisplayController.searchBar.frame = CGRectMake(0,0,0,0);
+    [self.searchDisplayController.searchBar setNeedsLayout];
 }
+
+- (void) showSearchBar{
+    self.searchDisplayController.searchBar.frame = CGRectMake(0,0,320,44.0);
+    [self.searchDisplayController.searchBar setNeedsLayout];
+}
+
 - (IBAction)touchBrowseBarButton:(id)sender {
-    //    [self performSegueWithIdentifier:@"browseGames" sender:self];
-}
-- (IBAction)touchUserProfileBarButton:(id)sender {
-    [self performSegueWithIdentifier:@"userProfile" sender:self];
+    [self showSearchBar];
 }
 
 #pragma mark data
@@ -160,9 +170,26 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *simpleTableIdentifier = @"GameSummaryCell";
+    GameSummaryTableViewCell *cell;
     
-    GameSummaryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    //    GameSummaryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    //
+    //    if (!cell) {
+    //        cell = [[GameSummaryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    //    }
     
+    if(tableView == self.searchDisplayController.searchResultsTableView){
+        cell = [self.tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+        //cell fields customization
+        cell.backgroundColor = [UIColor clearColor];
+        cell.opaque = NO;
+    }
+    else {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier forIndexPath:indexPath];
+        //cell fields customization
+        cell.backgroundColor = [UIColor clearColor];
+        cell.opaque = NO;
+    }
     if (!cell) {
         cell = [[GameSummaryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
@@ -171,6 +198,10 @@
     cell.room = room;
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 96;
 }
 
 -(void) updateTableAppearance{
@@ -187,11 +218,23 @@
 
 #pragma mark navigation
 
+- (IBAction)touchNewGameBarButton:(id)sender {
+    [self performSegueWithIdentifier:@"createGame" sender:self];
+}
+- (IBAction)touchUserProfileBarButton:(id)sender {
+    [self performSegueWithIdentifier:@"userProfile" sender:self];
+}
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"selectRoom"]) {
         RoomCDTVC *vc = (RoomCDTVC*)segue.destinationViewController;
         GameSummaryTableViewCell* cell = sender;
-        vc.room = self.rooms[[self.tableView indexPathForCell:cell].row];
+        if (self.searchDisplayController.active) {
+            vc.room = self.rooms[[self.searchDisplayController.searchResultsTableView indexPathForCell:cell].row];
+        } else {
+            vc.room = self.rooms[[self.tableView indexPathForCell:cell].row];
+        }
+        
         NSLog(@"%@", vc.room);
     }
 }

@@ -129,10 +129,10 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     // 1. Dequeue the custom header cell
-    GameSummaryTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"GameSummaryCell"];
+    GameSummaryTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"GameSummaryCellForRoom"];
     
     if (!cell) {
-        cell = [[GameSummaryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GameSummaryCell"];
+        cell = [[GameSummaryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GameSummaryCellForRoom"];
     }
     
     // 2. Set the various properties
